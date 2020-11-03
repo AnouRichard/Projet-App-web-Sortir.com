@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
-class SortieController extends Controller
+class SortieController extends AbstractController
 {
     /**
      * @Route("/sorties", name="sortie_list")

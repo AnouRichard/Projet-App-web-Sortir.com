@@ -1,0 +1,99 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+{% block main %}
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="row justify-content-center col-12">
+                <h2>Créer une sortie</h2>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4"><h4>Nom de la sortie:</h4></div>
+                        <div class="col-8">
+                            <input type="text" id="nomSortie" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>Date et heure de la sortie:</h4></div>
+                        <div class="col-8">
+                            <input type="datetime-local" id="sortieDateHeure"  class="form-control ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>Date limite d'inscription:</h4></div>
+                        <div class="col-8">
+                            <input type="date" id="dateLimite"  class="form-control ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>Nombre de place:</h4></div>
+                        <div class="col-8">
+                            <input type="text" id="nombrePlace"  class="form-control ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>Durée:</h4></div>
+                        <div class="col-8">
+                            <select id="duree" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>Description des infos:</h4></div>
+                        <div class="col-8">
+                            <input type="text" id="descriptioninfo"  class="form-control ">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4"><h4>Campus :</h4></div>
+                        <div class="col-8">
+                            <input type="text" id="campus" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>ville :</h4></div>
+                        <div class="col-8">
+                            <select id="ville" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>lieu :</h4></div>
+                        <div class="col-8">
+                            <select id="lieu" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>rue :</h4></div>
+                        <div class="col-8">
+                            <input type="text" id="rue" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>Code postal:</h4></div>
+                        <div class="col-8">
+                            <input type="text" id="codepostal" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>Latitude :</h4></div>
+                        <div class="col-8">
+                            <input type="text" id="latitude" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><h4>Longitude:</h4></div>
+                        <div class="col-8">
+                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

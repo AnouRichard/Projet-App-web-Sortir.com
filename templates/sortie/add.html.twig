@@ -1,5 +1,9 @@
 {% extends 'layout.html.twig' %}
 {% block main %}
+
+    {{ form_start(sortieForm) }}
+    <button type="submit">Send!</button>
+    {{ form_end(sortieForm) }}
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="row justify-content-center col-12">

@@ -25,11 +25,11 @@ class SortieController extends AbstractController
      */
     public function add(EntityManagerInterface $em)
     {
-        $repo = $em->getRepository(Ville::class);
-        $ville = $repo->findAll();
-       /* $sortie= new Sorties();
-        $sortieForm = $this->createForm(SortieType::class, $sortie);*/
-        return $this->render("sortie/add.html.twig",["ville" => $ville]);
+        /*$repo = $em->getRepository(Ville::class);
+        $ville = $repo->findAll();*/
+        $sortie= new Sorties();
+        $sortieForm = $this->createForm(SortieType::class, $sortie);
+        return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView()]);
     }
 
 

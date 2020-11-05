@@ -63,9 +63,20 @@ class Sorties
     private $organisateur;
 
     /**
-     *@ORM\Column(type="integer")
+     *
      */
-    private $lieux_no_lieux;
+    private $lieux;
+
+
+    /**
+     *
+     */
+    private $etats;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     /**
      * @return mixed
@@ -214,45 +225,33 @@ class Sorties
     /**
      * @return mixed
      */
-    public function getLieuxNoLieux()
+    public function getLieux()
     {
-        return $this->lieux_no_lieux;
+        return $this->lieux;
     }
 
     /**
-     * @param mixed $lieux_no_lieux
+     * @param mixed $lieux
      */
-    public function setLieuxNoLieux($lieux_no_lieux): void
+    public function setLieux($lieux): void
     {
-        $this->lieux_no_lieux = $lieux_no_lieux;
+        $this->lieux = $lieux;
     }
 
     /**
      * @return mixed
      */
-    public function getEtatsNoEtat()
+    public function getEtats()
     {
-        return $this->etats_no_etat;
+        return $this->etats;
     }
 
     /**
-     * @param mixed $etats_no_etat
+     * @param mixed $etats
      */
-    public function setEtatsNoEtat($etats_no_etat): void
+    public function setEtats($etats): void
     {
-        $this->etats_no_etat = $etats_no_etat;
+        $this->etats = $etats;
     }
 
-    /**
-     *@ORM\Column(type="integer")
-     */
-    private $etats_no_etat;
-
-
-
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 }

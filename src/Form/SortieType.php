@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Sorties;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,23 +18,23 @@ class SortieType extends AbstractType
                'attr'=>['class'=>'form-control' ],
                 'label'=>'Nom'
             ])
-            ->add('dateDeDebut',TextType::class,[
+            ->add('dateDeDebut',DateTimeType::class,[
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Date et heure de la sortie'
             ])
-            ->add('duree',TextType::class,[
+            ->add('duree',ChoiceList::class,[
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Duree'
             ])
-            ->add('dateCloture',TextType::class,[
+            ->add('dateCloture',DateType::class,[
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Date limite d inscription'
             ])
-            ->add('nbInscriptionMax',TextType::class,[
+            ->add('nbInscriptionMax',NumberType::class,[
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Nombre de places'
             ])
-            ->add('descriptionInfos',TextType::class,[
+            ->add('descriptionInfos',TextareaType::class,[
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Description et infos'
             ])

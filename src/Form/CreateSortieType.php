@@ -32,7 +32,7 @@ class CreateSortieType extends AbstractType
                 'label'=>'Duree'
             ])
             ->add('dateCloture',DateType::class,[
-                'attr'=>['class'=>'form-control' ],
+                'attr'=>['class'=>'' ],
                 'label'=>'Date limite d inscription'
             ])
             ->add('nbInscriptionMax',NumberType::class,[

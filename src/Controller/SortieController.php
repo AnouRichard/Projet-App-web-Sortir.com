@@ -38,9 +38,9 @@ class SortieController extends AbstractController
     }
 
     /**
-     * @Route("/sorties/add/ajax")
+     * @Route("/sorties/add/ajax", name="sortie_add_ajax")
      */
-    public function ajaxAction(Request $request) {
+    public function ajaxAction(Request $request,EntityManagerInterface $em) {
         $repo = $em->getRepository(Lieux::class);
         $lieu=$repo->findAll();
 

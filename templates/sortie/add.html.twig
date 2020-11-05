@@ -3,9 +3,9 @@
     {% block main %}
         <script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script language = "javascript">
-            $(document).ready(function(){
-                $('#ville').change(function (){
-                  var idVille=$(this).val();
+            $(document).ready(function() {
+                $('#ville').change(function () {
+                    var idVille = $(this).val();
                     $.ajax({
                         url:        '/sorties/add/ajax',
                         type:       'POST',
@@ -14,13 +14,10 @@
 
                         success: function(data, status) {
                             console.log(data);
-                            }
-                        },
-                        error : function(xhr, textStatus, errorThrown) {
-                            alert('Ajax request failed.');
                         }
                     });
                 });
+            })
         </script>
     {{ dump(villes) }}
     {{ form_start(sortieForm) }}

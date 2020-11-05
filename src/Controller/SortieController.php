@@ -43,18 +43,20 @@ class SortieController extends AbstractController
      */
     public function ajaxAction(Request $request,EntityManagerInterface $em) {
         $repo = $em->getRepository(Lieux::class);
-        $lieu=$repo->findAll();
-        dump($lieu);
+        $lieux=$repo->findAll();
+        dump($lieux);
         if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {
-            $jsonData = $lieu;
-           /* $idx = 0;
-            foreach($students as $student) {
+            $jsonData = array();
+            $idx = 0;
+            foreach($lieux as $lieu) {
                 $temp = array(
-                    'name' => $student->getName(),
-                    'address' => $student->getAddress(),
+                    'nom' => $lieu->getNom(),
+                    'rue' => $lieu->getRue(),
+                    'latitude' => $lieu->getLatitude(),
+                    'longitude' => $lieu->getLongitude(),
                 );
                 $jsonData[$idx++] = $temp;
-            }*/
+            }
             return new JsonResponse($lieu);
         } else {
             return $this->render("sortie/add.html.twig");

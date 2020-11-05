@@ -1,13 +1,13 @@
 {% extends 'layout.html.twig' %}
-<script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script language = "javascript">
-    $(document).ready(function(){
 
-        console.log("test");
-    });
-</script>
     {% block main %}
+        <script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script language = "javascript">
+            $(document).ready(function(){
 
+                console.log("test");
+            });
+        </script>
     {{ dump(villes) }}
     {{ form_start(sortieForm) }}
     <div class="row justify-content-center">

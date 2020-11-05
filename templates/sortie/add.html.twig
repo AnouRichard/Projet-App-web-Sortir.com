@@ -7,7 +7,7 @@
                 $('#ville').change(function () {
                     var idVille = $(this).val();
                     $.ajax({
-                        url:        '/sorties/add/ajax',
+                        url:        '/sorties/add',
                         type:       'POST',
                         dataType:   'json',
                         async:      true,

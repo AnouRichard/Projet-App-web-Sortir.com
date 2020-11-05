@@ -49,14 +49,14 @@ class SortieType extends AbstractType
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Organisateur'
             ])
-            ->add('lieux_no_lieux',TextType::class,[
+            /*->add('lieux_no_lieux',TextType::class,[
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Lieux'
             ])
             ->add('etats_no_etat',TextType::class,[
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Etat'
-            ])
+            ])*/
         ;
     }
 

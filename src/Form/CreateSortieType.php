@@ -24,11 +24,11 @@ class CreateSortieType extends AbstractType
                 'label'=>'Nom'
             ])
             ->add('dateDeDebut',DateTimeType::class,[
-                'attr'=>['class'=>'form-control' ],
+                'attr'=>['class'=>'' ],
                 'label'=>'Date et heure de la sortie'
             ])
             ->add('duree',ChoiceType::class,[
-                'attr'=>['class'=>'form-control' ],
+                'attr'=>['class'=>'' ],
                 'label'=>'Duree'
             ])
             ->add('dateCloture',DateType::class,[

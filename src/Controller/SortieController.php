@@ -57,7 +57,7 @@ class SortieController extends AbstractController
                 );
                 $jsonData[$idx++] = $temp;
             }
-            return new JsonResponse($lieu);
+            return new JsonResponse($jsonData);
         } else {
             return $this->render("sortie/add.html.twig");
         }

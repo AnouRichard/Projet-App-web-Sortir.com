@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 {% block main %}
 
-    {{ dump(ville) }}
+    {{ dump(villes) }}
     {{ form_start(sortieForm) }}
     <div class="row justify-content-center">
         <div class="col-12">
@@ -40,22 +40,41 @@
 
                     </div>
                     <div class="row mt-3">
-                        <input type="text" value="{{ ville[0].nom}}">
+                        <div class="col-4"><h4>Campus </h4></div>
+                        <div class="col-8"><input type="text"  class="form-control"></div>
                     </div>
                     <div class="row mt-3">
+                        <div class="col-4"><h4>Ville</h4></div>
+                        <div class="col-8">
+                            <select name="pets" id="pet-select">
+                                {% for ville in villes %}
+                                    <li></li>
+                                    <option value="{{ ville.id|e }}">{{ ville.nom|e }}</option>
+                                {% endfor %}
 
+
+                            </select>
+                        </div>
                     </div>
                     <div class="row mt-3">
-
+                        <div class="col-4"><h4>Lieu </h4></div>
+                        <div class="col-8"><input type="text"  class="form-control"></div>
                     </div>
                     <div class="row mt-3">
-
+                        <div class="col-4"><h4>Rue</h4></div>
+                        <div class="col-8"><input type="text"  class="form-control"></div>
                     </div>
                     <div class="row mt-3">
-
+                        <div class="col-4"><h4>Code Postal</h4></div>
+                        <div class="col-8"><input type="text"  class="form-control"></div>
                     </div>
                     <div class="row mt-3">
-
+                        <div class="col-4"><h4>Latitude</h4></div>
+                        <div class="col-8"><input type="text"  class="form-control"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4"><h4>Longitude</h4></div>
+                        <div class="col-8"><input type="text"  class="form-control"></div>
                     </div>
                 </div>
             </div>

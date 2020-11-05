@@ -30,7 +30,7 @@ class SortieController extends AbstractController
         $ville = $repo->findAll();
         $sortie= new Sorties();
         $sortieForm = $this->createForm(CreateSortieType::class, $sortie);
-        return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView(),"ville" => $ville]);
+        return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView(),"villes" => $ville]);
     }
 
 

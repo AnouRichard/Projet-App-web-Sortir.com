@@ -1,32 +1,93 @@
-
-
-label {
-    display: inline-block;
-    width: 90px;
-    text-align: right;
+/**
+global styles
+ */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
-input, textarea {
-    font: 1em sans-serif;
-    width: 300px;
-    box-sizing: border-box;
-    border: 1px solid #999;
+.container {
+    min-width: 360px;
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px 20px;
 }
 
-input:focus, textarea:focus {
-    border-color: #000;
+a {
+    text-decoration: none;
+    color: #000;
 }
 
-textarea {
-    vertical-align: top;
-    height: 5em;
+a:hover {
+    text-decoration: underline;
 }
 
-.button {
-
-    padding-left: 90px;
+/**
+header
+ */
+.site-title {
+    display: flex;
+    align-items: center;
+    font-size: 48px;
 }
 
-button {
-    margin-left: .5em;
+.site-title img {
+    height: 48px;
+    display: block;
+    margin-right: 5px;
+}
+
+header nav ul {
+    margin: 5px 0;
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+header nav a {
+    display: block;
+    padding: 5px 8px;
+    margin-right: 10px;
+}
+
+/**
+main
+ */
+main {
+    padding: 30px 0;
+    border-top: 1px solid #D3D3D3;
+    border-bottom: 1px solid #D3D3D3;
+}
+
+h1 {
+    margin: 0;
+}
+
+/**
+footer
+ */
+footer {
+    padding: 20px 0;
+    text-align: center;
+}
+
+
+/******************* Messages Flash*******************/
+
+.flash{
+    padding: 20px;
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.flash-success {
+    background-color: #66dd66;
+    color: #FFF;
+}
+
+.flash-error {
+    background-color: red;
+
 }

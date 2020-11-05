@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Home {% endblock %}
+
+{% block main %}
+
+    <div>
+        {{ form_start(userForm) }}
+
+             {{ form_row(userForm.pseudo) }}
+             {{ form_row(userForm.prenom) }}
+             {{ form_row(userForm.nom) }}
+             {{ form_row(userForm.telephone) }}
+             {{ form_row(userForm.mail) }}
+             {{ form_row(userForm.motDePasse) }}
+             {{ form_row(userForm.confirmation) }}
+             {{ form_row(userForm.campus) }}
+          {#   {{ form_row(userForm.photo) }}   #}
+        <div>
+             <button type="submit">Enregistrer</button>
+             <input type="hidden" name="_target_path" value="login"/>
+        </div>
+             <button type="reset">
+                 <a href="{{ path('login') }}" >Annuler</a>
+             </button>
+
+        {{ form_end(userForm) }}
+
+    </div>
+
+
+{% endblock %}

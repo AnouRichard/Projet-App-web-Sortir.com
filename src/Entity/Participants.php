@@ -4,13 +4,39 @@ namespace App\Entity;
 
 use App\Repository\ParticipantsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ParticipantsRepository::class)
  */
-class Participants
+class Participants implements UserInterface
 {
+    public function getRoles()
+    {
+        return ["ROLE_USER"];
+    }
+
+    public function getPassword()
+    {
+        return $this->getMotDePasse();
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getUsername()
+    {
+        return $this->getMail();
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -53,19 +79,19 @@ class Participants
     private $motDePasse;
 
     /**
-     * @ORM\Column (type="integer", nullable=false)
+     * @ORM\Column (type="boolean", nullable=true)
      */
     private $administrateur;
 
     /**
-     * @ORM\Column (type="integer", nullable=false)
+     * @ORM\Column (type="boolean", nullable=true)
      */
     private $actif;
 
     /**
-     * @ORM\Column (type="integer", nullable=false)
+     *
      */
-    private $campusNoCampus;
+    private $campus;
 
     public function getId(): ?int
     {
@@ -203,16 +229,18 @@ class Participants
     /**
      * @return mixed
      */
-    public function getCampusNoCampus()
+    public function getCampus()
     {
-        return $this->campusNoCampus;
+        return $this->campus;
     }
 
     /**
-     * @param mixed $campusNoCampus
+     * @param mixed $campus
      */
-    public function setCampusNoCampus($campusNoCampus): void
+    public function setCampus($campus): void
     {
-        $this->campusNoCampus = $campusNoCampus;
+        $this->campus = $campus;
     }
+
+
 }

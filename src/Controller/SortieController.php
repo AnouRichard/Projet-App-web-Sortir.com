@@ -19,7 +19,7 @@ class SortieController extends AbstractController
         return $this->render("sortie/list.html.twig");
     }
     /**
-     * @Route("/add", name="sortie_add")
+     * @Route("/addsortie", name="sortie_add")
      */
     public function add(EntityManagerInterface $em)
     {

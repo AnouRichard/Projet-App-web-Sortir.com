@@ -4,8 +4,9 @@
         <script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script language = "javascript">
             $(document).ready(function(){
-
-                console.log("test");
+                $("#ville").change(function (){
+                    console.log("test");
+                })
             });
         </script>
     {{ dump(villes) }}
@@ -53,7 +54,7 @@
                     <div class="row mt-3">
                         <div class="col-4"><h4>Ville</h4></div>
                         <div class="col-8">
-                            <select name="ville" class="form-control">
+                            <select name="ville" class="form-control" id="ville">
                                 {% for ville in villes %}
                                     <option value="{{ ville.id|e }}">{{ ville.nom|e }}</option>
                                 {% endfor %}
@@ -62,7 +63,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-4"><h4>Lieu </h4></div>
-                        <div class="col-8"><input type="text"  class="form-control"></div>
+                        <div class="col-8"><input type="text"  class="form-control" id="lieu"></div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-4"><h4>Rue</h4></div>

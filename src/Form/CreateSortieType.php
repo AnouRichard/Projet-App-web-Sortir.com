@@ -47,7 +47,7 @@ class CreateSortieType extends AbstractType
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'EtatSortie'
             ])
-            ->add('urlPhoto',TextType::class,[
+            ->add('test',TextType::class,[
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Photo'
             ])

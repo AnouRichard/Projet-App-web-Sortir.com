@@ -1,5 +1,12 @@
 {% extends 'layout.html.twig' %}
-{% block main %}
+<script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script language = "javascript">
+    $(document).ready(function(){
+
+        console.log("test");
+    });
+</script>
+    {% block main %}
 
     {{ dump(villes) }}
     {{ form_start(sortieForm) }}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Sorties;
 use App\Form\SortieType;
+use App\Repository\VilleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,13 +20,15 @@ class SortieController extends AbstractController
         return $this->render("sortie/list.html.twig");
     }
     /**
-     * @Route("/addsortie", name="sortie_add")
+     * @Route("/sorties/add", name="sortie_add")
      */
     public function add(EntityManagerInterface $em)
     {
+        $repo = $em->getRepository(Ville::class);
+        $ville = $repo->findAll();
         $sortie= new Sorties();
         $sortieForm = $this->createForm(SortieType::class, $sortie);
-        return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView()]);
+        return $this->render("sortie/add.html.twig",["ville" => $ville],["sortieForm" => $sortieForm->createView()]);
     }
 
 

@@ -43,7 +43,7 @@ class SortieController extends AbstractController
     public function ajaxAction(Request $request,EntityManagerInterface $em) {
         $repo = $em->getRepository(Lieux::class);
         $lieu=$repo->findAll();
-
+        dump($lieu);
         if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {
             $jsonData = $lieu;
            /* $idx = 0;

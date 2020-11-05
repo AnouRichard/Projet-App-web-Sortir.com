@@ -14,7 +14,8 @@
 
                         success: function(data, status) {
                             console.log(data);
-                            $('#lieu').value='test';
+                            $('#lieu').setAttribute('value','test');
+                            //$('#lieu').value='test';
                         }
                     });
                 });

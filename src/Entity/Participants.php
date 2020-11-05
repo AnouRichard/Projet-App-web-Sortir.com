@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ParticipantsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -89,14 +91,21 @@ class Participants implements UserInterface
     private $actif;
 
     /**
-     *
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="participants")
      */
     private $campus;
 
-    public function getId(): ?int
+    /**
+     * @ORM\OneToMany(targetEntity=Inscriptions::class, mappedBy="Participant")
+     */
+    private $inscriptions;
+
+    public function __construct()
     {
-        return $this->id;
+        $this->inscriptions = new ArrayCollection();
     }
+
+
 
     /**
      * @return mixed
@@ -226,20 +235,46 @@ class Participants implements UserInterface
         $this->actif = $actif;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCampus()
+    public function getCampus(): ?Campus
     {
         return $this->campus;
     }
 
-    /**
-     * @param mixed $campus
-     */
-    public function setCampus($campus): void
+    public function setCampus(?Campus $campus): self
     {
         $this->campus = $campus;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Inscriptions[]
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscriptions $inscription): self
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions[] = $inscription;
+            $inscription->setParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscription(Inscriptions $inscription): self
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getParticipant() === $this) {
+                $inscription->setParticipant(null);
+            }
+        }
+
+        return $this;
     }
 
 

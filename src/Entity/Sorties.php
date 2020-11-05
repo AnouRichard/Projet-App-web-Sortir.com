@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SortiesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -63,15 +65,26 @@ class Sorties
     private $organisateur;
 
     /**
-     *
+     * @ORM\ManyToOne(targetEntity=Etats::class, inversedBy="sorties")
      */
-    private $lieux;
-
+    private $etat;
 
     /**
-     *
+     * @ORM\ManyToMany(targetEntity=Lieux::class, inversedBy="sorties")
      */
-    private $etats;
+    private $lieu;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Inscriptions::class, mappedBy="sortie")
+     */
+    private $inscriptions;
+
+    public function __construct()
+    {
+        $this->lieu = new ArrayCollection();
+        $this->inscriptions = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -222,36 +235,71 @@ class Sorties
         $this->organisateur = $organisateur;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLieux()
+    public function getEtat(): ?Etats
     {
-        return $this->lieux;
+        return $this->etat;
+    }
+
+    public function setEtat(?Etats $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
     }
 
     /**
-     * @param mixed $lieux
+     * @return Collection|Lieux[]
      */
-    public function setLieux($lieux): void
+    public function getLieu(): Collection
     {
-        $this->lieux = $lieux;
+        return $this->lieu;
+    }
+
+    public function addLieu(Lieux $lieu): self
+    {
+        if (!$this->lieu->contains($lieu)) {
+            $this->lieu[] = $lieu;
+        }
+
+        return $this;
+    }
+
+    public function removeLieu(Lieux $lieu): self
+    {
+        $this->lieu->removeElement($lieu);
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return Collection|Inscriptions[]
      */
-    public function getEtats()
+    public function getInscriptions(): Collection
     {
-        return $this->etats;
+        return $this->inscriptions;
     }
 
-    /**
-     * @param mixed $etats
-     */
-    public function setEtats($etats): void
+    public function addInscription(Inscriptions $inscription): self
     {
-        $this->etats = $etats;
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions[] = $inscription;
+            $inscription->setSortie($this);
+        }
+
+        return $this;
     }
+
+    public function removeInscription(Inscriptions $inscription): self
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getSortie() === $this) {
+                $inscription->setSortie(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }

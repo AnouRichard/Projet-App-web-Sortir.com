@@ -34,7 +34,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="add_user")
+     * @Route("/adduser", name="add_user")
      */
     public function add(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $encoder)
     {

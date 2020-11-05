@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LieuxRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,9 +40,20 @@ class Lieux
     private $longitude;
 
     /**
-     *
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="lieuxes")
      */
-    private $villes;
+    private $ville;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Sorties::class, mappedBy="lieu")
+     */
+    private $sorties;
+
+    public function __construct()
+    {
+        $this->sorties = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -111,20 +124,43 @@ class Lieux
         $this->longitude = $longitude;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getVilles()
+    public function getVille(): ?Ville
     {
-        return $this->villes;
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
     }
 
     /**
-     * @param mixed $villes
+     * @return Collection|Sorties[]
      */
-    public function setVilles($villes): void
+    public function getSorties(): Collection
     {
-        $this->villes = $villes;
+        return $this->sorties;
+    }
+
+    public function addSorty(Sorties $sorty): self
+    {
+        if (!$this->sorties->contains($sorty)) {
+            $this->sorties[] = $sorty;
+            $sorty->addLieu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSorty(Sorties $sorty): self
+    {
+        if ($this->sorties->removeElement($sorty)) {
+            $sorty->removeLieu($this);
+        }
+
+        return $this;
     }
 
 }

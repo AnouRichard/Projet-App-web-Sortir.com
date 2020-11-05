@@ -16,6 +16,13 @@ class SortieController extends AbstractController
     {
         return $this->render("sortie/list.html.twig");
     }
+    /**
+     * @Route("/add", name="sortie_add")
+     */
+    public function add()
+    {
+        return $this->render("sortie/add.html.twig");
+    }
 
 
 }

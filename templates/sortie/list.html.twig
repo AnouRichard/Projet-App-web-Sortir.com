@@ -1,7 +1,60 @@
-{% extends 'layout.html.twig' %}
-
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
 {% block main %}
-
+    <div class="row justify-content-center ">
+        <div class="col-12">
+            <div class="row justify-content-center">
+               <div class="col-5" >
+                   <div class="row">
+                       <div class="col-12">
+                           <label for="campus">Campus</label>
+                           <select id="campus" class="form-control form-control-lg">
+                           </select>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <label for="nomSortie">Le nom de la sortie contient</label>
+                       <input type="text" class="form-control form-control-lg" id="nomSortie">
+                   </div>
+                   <div class="row">
+                        <div class="col-6">
+                            <label for="entreDate">Entre</label>
+                            <input type="date" id="entreDate" name="trip-start" class="form-control form-control-lg">
+                        </div>
+                       <div class="col-6">
+                           <label for="sortieDate">et</label>
+                           <input type="date" id="sortieDate" name="trip-start" class="form-control form-control-lg">
+                       </div>
+                   </div>
+               </div>
+                <div class="col-5" >
+                    <div class="row">
+                        <input type="checkbox" id="sortieOrga" class="">
+                        <label for="sortieOrga">Sorties dont je suis L'organisateur/trice</label>
+                    </div>
+                    <div class="row">
+                        <input type="checkbox" id="sortieinscrit" class="">
+                        <label for="sortieinscrit">Sorties auxquelles je suis inscrit/e</label>
+                    </div>
+                    <div class="row">
+                        <input type="checkbox" id="sortiePasInscrit" class="" >
+                        <label for="sortiePasInscrit">Sorties auxquelles je ne suis pas inscrit/e</label>
+                    </div>
+                    <div class="row">
+                        <input type="checkbox" id="sortiepasse"  class="">
+                        <label for="sortiepasse">Sorties passées</label>
+                    </div>
+                </div>
+                <div class="col-2" >
+                    <button class="btn btn-lg btn-secondary" type="submit">recherche</button>
+                </div>
+            </div>
+            <div class="col-12">
+                <a href="{{ path("sortie_add") }}"><button class="btn btn-secondary" type="button">Créer une sortie</button></a>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}

@@ -43,6 +43,10 @@ class CreateSortieType extends AbstractType
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Description et infos'
             ])
+            ->add('update_data', 'checkbox', array(
+                'label' => 'Souhaitez vous modifier vos données personnelles',
+                'mapped' => false
+            ));
 
         ;
     }

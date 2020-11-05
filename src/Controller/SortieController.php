@@ -3,6 +3,7 @@ namespace App\Controller;
 
 
 use App\Entity\Sorties;
+use App\Entity\Ville;
 use App\Form\SortieType;
 use App\Repository\VilleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

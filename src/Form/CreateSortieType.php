@@ -43,20 +43,7 @@ class CreateSortieType extends AbstractType
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Description et infos'
             ])
-            ->add('etatSortie',TextType::class,[
-                'attr'=>['class'=>'form-control' ],
-                'label'=>'EtatSortie'
-            ])
-            ->add('test',TextType::class,[
-                'attr'=>['class'=>'form-control' ],
-                'label'=>'Photo'
-            ])
-            ->add('organisateur',TextType::class,[
-                'attr'=>['class'=>'form-control' ],
-                'label'=>'Organisateur'
-            ])
-            ->add('etat')
-            ->add('lieu')
+
         ;
     }
 

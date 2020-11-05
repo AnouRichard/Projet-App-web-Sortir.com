@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Lieux;
 use App\Entity\Sorties;
 use App\Entity\Ville;
 use App\Form\CreateSortieType;
@@ -36,5 +37,27 @@ class SortieController extends AbstractController
         return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView(),"villes" => $ville]);
     }
 
+    /**
+     * @Route("/sorties/add/ajax")
+     */
+    public function ajaxAction(Request $request) {
+        $repo = $em->getRepository(Lieux::class);
+        $lieu=$repo->findAll();
+
+        if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {
+            $jsonData = $lieu;
+           /* $idx = 0;
+            foreach($students as $student) {
+                $temp = array(
+                    'name' => $student->getName(),
+                    'address' => $student->getAddress(),
+                );
+                $jsonData[$idx++] = $temp;
+            }*/
+            return new JsonResponse($jsonData);
+        } else {
+            return $this->render("sortie/add.html.twig");
+        }
+    }
 
 }

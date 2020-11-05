@@ -5,7 +5,21 @@
         <script language = "javascript">
             $(document).ready(function(){
                 $('#ville').change(function (){
-                  console.log( $(this).val());
+                  var idVille=$(this).val();
+                    $.ajax({
+                        url:        '/sorties/add/ajax',
+                        type:       'POST',
+                        dataType:   'json',
+                        async:      true,
+
+                        success: function(data, status) {
+                            console.log(data);
+                            }
+                        },
+                        error : function(xhr, textStatus, errorThrown) {
+                            alert('Ajax request failed.');
+                        }
+                    });
                 })
             });
         </script>

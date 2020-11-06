@@ -43,7 +43,7 @@ class SortieController extends AbstractController
      */
     public function ajaxAction(Request $request,EntityManagerInterface $em) {
         $repo = $em->getRepository(Ville::class);
-        $idVille=$request->data->get('idville');
+        $idVille=$request->request->get('idVille');
         $ville=$repo->find($idVille);
         $repo = $em->getRepository(Lieux::class);
         $lieux=$repo->findBy(array("ville" => $ville));

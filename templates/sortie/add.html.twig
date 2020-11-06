@@ -11,14 +11,17 @@
                         type:       'POST',
                         dataType:   'json',
                         async:      true,
-                        data:{	idVille:idVille
-                        },
+                        data:idVille,
+
 
                         success: function(data, status) {
                             console.log(data);
                            // $('#lieu').setAttribute('value','test');
                             $('#lieu').val(data[0]['nom']);
                             console.log("changement de valeur");
+                            $('#lieu').change(function () {
+                                var idlieu = $(this).val();
+                            });
                         }
                     });
                 });

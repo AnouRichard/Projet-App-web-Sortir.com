@@ -18,19 +18,17 @@
                             console.log(data);
                            // $('#lieu').setAttribute('value','test');
 
-                            $('#lieu').append($('<option>', {
-                                value: 1,
-                                text: 'My option'
-                            }));
 
-                           /* for (var i = 0; i < data.length; i++) {
+                            for (var i = 0; i < data.length; i++) {
                                 console.log("boucle :"+i);
-                                var option = document.createElement("option");
-                                option.text = data[i]['nom'];
-                                option.value=data[i]['id'];
-                                $('#lieu').add(option);
+
+
+                                $('#lieu').append($('<option>', {
+                                    value: data[i]['id'],
+                                    text: data[i]['nom']
+                                }));
                                 console.log("fin boucle :"+i);
-                            }*/
+                            }
 
                             $('#lieu').change(function () {
                                 var idlieu = $(this).val();

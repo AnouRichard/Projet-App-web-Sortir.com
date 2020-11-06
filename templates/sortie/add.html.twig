@@ -17,6 +17,18 @@
                         success: function(data, status) {
                             console.log(data);
                            // $('#lieu').setAttribute('value','test');
+
+                            var option = document.createElement("option");
+                            option.text = "Kiwi";
+                            x.add(option, x[0]);
+                            for (var i = 0; i < data.length; i++) {
+                                option.text = data[i]['nom'];
+                                option.val(data[i]['id']);
+                                $('#lieu').add(option);
+                            }
+
+
+
                             $('#lieu').val(data[0]['nom']);
                             console.log("changement de valeur");
                             $('#lieu').change(function () {
@@ -82,7 +94,10 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-4"><h4>Lieu </h4></div>
-                        <div class="col-8"><input type="text"  class="form-control" id="lieu" value=""></div>
+                        <select class="col-8">
+                            <select name="lieu"  class="form-control" id="lieu" >
+
+                            </select>
                     </div>
                     <div class="row mt-3">
                         <div class="col-4"><h4>Rue</h4></div>

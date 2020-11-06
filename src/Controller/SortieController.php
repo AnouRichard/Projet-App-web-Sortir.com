@@ -54,6 +54,7 @@ class SortieController extends AbstractController
             $idx = 0;
             foreach($lieux as $lieu) {
                 $temp = array(
+                    'id' => $lieu->getId(),
                     'nom' => $lieu->getNom(),
                     'rue' => $lieu->getRue(),
                     'latitude' => $lieu->getLatitude(),

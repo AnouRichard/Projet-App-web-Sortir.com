@@ -29,6 +29,10 @@
                                 }));
                                 console.log("fin boucle :"+i);
                             }
+                            var idlieu = $(this).val();
+                            $('#rue').val(data[idlieu]['rue']);
+                            $('#longitude').val(data[idlieu]['longitude']);
+                            $('#latitude').val(data[idlieu]['latitude']);
 
                             $('#lieu').change(function () {
                                 var idlieu = $(this).val();

@@ -32,7 +32,10 @@
 
                             $('#lieu').change(function () {
                                 var idlieu = $(this).val();
-                                console.log(idlieu);
+                                $('#rue').val(data[idlieu]['rue']);
+                                $('#longitude').val(data[idlieu]['longitude']);
+                                $('#latitude').val(data[idlieu]['latitude']);
+
                             });
                         }
                     });
@@ -98,21 +101,22 @@
 
                             </select>
                         </div>
+                    </div>
                     <div class="row mt-3">
                         <div class="col-4"><h4>Rue</h4></div>
-                        <div class="col-8"><input type="text"  class="form-control"></div>
+                        <div class="col-8"><input id="rue" type="text"  class="form-control"></div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-4"><h4>Code Postal</h4></div>
-                        <div class="col-8"><input type="text"  class="form-control"></div>
+                        <div class="col-8"><input id="codepostal" type="text"  class="form-control"></div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-4"><h4>Latitude</h4></div>
-                        <div class="col-8"><input type="text"  class="form-control"></div>
+                        <div class="col-8"><input id="latitude" type="text"  class="form-control"></div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-4"><h4>Longitude</h4></div>
-                        <div class="col-8"><input type="text"  class="form-control"></div>
+                        <div class="col-8"><input id="longitude" type="text"  class="form-control"></div>
                     </div>
                 </div>
             </div>

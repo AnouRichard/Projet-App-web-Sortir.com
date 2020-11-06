@@ -17,16 +17,20 @@
                         success: function(data, status) {
                             console.log(data);
                            // $('#lieu').setAttribute('value','test');
+                            console.log("boucle :"+i);
+                            var option = document.createElement("option");
+                            option.text = data[0]['nom'];
+                            option.value=data[0]['id'];
+                            $('#lieu').add(option);
 
-
-                            for (var i = 0; i < data.length; i++) {
+                           /* for (var i = 0; i < data.length; i++) {
                                 console.log("boucle :"+i);
                                 var option = document.createElement("option");
                                 option.text = data[i]['nom'];
                                 option.value=data[i]['id'];
                                 $('#lieu').add(option);
                                 console.log("fin boucle :"+i);
-                            }
+                            }*/
 
                             $('#lieu').change(function () {
                                 var idlieu = $(this).val();

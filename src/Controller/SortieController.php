@@ -42,9 +42,11 @@ class SortieController extends AbstractController
      * @Route("/sorties/add/ajax", name="sortie_add_ajax")
      */
     public function ajaxAction(Request $request,EntityManagerInterface $em) {
-        $repo = $em->getRepository(Lieux::class);
+        $repo = $em->getRepository(Ville::class);
         $idVille=$request->request->get('data');
-        $lieux=$repo->findBy(array("ville" => $idVille));
+        $ville=$repo->find($idVille);
+        $repo = $em->getRepository(Lieux::class);
+        $lieux=$repo->findBy(array("ville" => $ville));
         dump($lieux);
 
         if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {

@@ -20,15 +20,12 @@
 
                             var option = document.createElement("option");
                             for (var i = 0; i < data.length; i++) {
+                                console.log("boucle :"+i);
                                 option.text = data[i]['nom'];
                                 option.value=data[i]['id'];
                                 $('#lieu').add(option);
                             }
 
-
-
-                            $('#lieu').val(data[0]['nom']);
-                            console.log("changement de valeur");
                             $('#lieu').change(function () {
                                 var idlieu = $(this).val();
                                 console.log(idlieu);

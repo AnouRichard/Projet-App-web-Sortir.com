@@ -68,34 +68,6 @@ class SortieController extends AbstractController
         }
     }
 
-    /**
-     * @Route("/sorties/add/getLieux", name="getLieu")
-     */
-    public function ajaxAction(Request $request,EntityManagerInterface $em) {
-        $repo = $em->getRepository(Ville::class);
-        $idVille=$request->request->get('idVille');
-        $ville=$repo->find($idVille);
-        $repo = $em->getRepository(Lieux::class);
-        $lieux=$repo->findBy(array("ville" => $ville));
-        dump($lieux);
 
-        if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {
-            $jsonData = array();
-            $idx = 0;
-            foreach($lieux as $lieu) {
-                $temp = array(
-                    'id' => $lieu->getId(),
-                    'nom' => $lieu->getNom(),
-                    'rue' => $lieu->getRue(),
-                    'latitude' => $lieu->getLatitude(),
-                    'longitude' => $lieu->getLongitude(),
-                );
-                $jsonData[$idx++] = $temp;
-            }
-            return new JsonResponse($jsonData);
-        } else {
-            return $this->render("sortie/add.html.twig");
-        }
-    }
 
 }

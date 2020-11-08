@@ -21,10 +21,10 @@
                             $('#lieu option'). remove()
                             $.each(data, function( index, value ) {
                                 alert( index + ": " + value );
-                               /* $('#lieu').append($('<option>', {
-                                    value: data[i]['id'],
-                                    text: data[i]['nom']
-                                }));*/
+                                $('#lieu').append($('<option>', {
+                                    value: data[index]['id'],
+                                    text: data[index]['nom']
+                                }));
                             });
 
                             for (var i = 0; i < data.length; i++) {

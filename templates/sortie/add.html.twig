@@ -30,18 +30,11 @@
                                 console.log("fin boucle :"+i);
                             }
                             var idlieu = $('#lieu').val();
-                           console.log( data.filter(word => word.length > 6));
-                            /*$.ajax({
-                                url:        '/projet-app-web-sortir.com/public/sorties/add/ajax',
-                                type:       'POST',
-                                dataType:   'json',
-                                async:      true,
-                                data:{idLieu:idlieu},
+                            $('#rue').val( data[idlieu]['rue']);
+                            $('#codepostal').val(data[idlieu]['codepostal']);
+                            $('#latitude').val(data[idlieu]['latitude']);
+                            $('#longitude').val(data[idlieu]['longitude']);
 
-                                success: function(data, status) {
-
-                                }
-                            });*/
 
                         }
                     });

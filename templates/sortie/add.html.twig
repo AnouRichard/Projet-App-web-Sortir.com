@@ -19,19 +19,19 @@
                            // $('#lieu').setAttribute('value','test');
 
                             $('#lieu option'). remove()
-                            $.each([ 52, 97 ], function( index, value ) {
+                            $.each(data, function( index, value ) {
                                 alert( index + ": " + value );
+                               /* $('#lieu').append($('<option>', {
+                                    value: data[i]['id'],
+                                    text: data[i]['nom']
+                                }));*/
                             });
-                            data.forEach(element => console.log(element)
-                            );
+
                             for (var i = 0; i < data.length; i++) {
                                 console.log("boucle :"+i);
 
 
-                                $('#lieu').append($('<option>', {
-                                    value: data[i]['id'],
-                                    text: data[i]['nom']
-                                }));
+
                                 console.log("fin boucle :"+i);
                             }
                             var idlieu = $('#lieu').val();

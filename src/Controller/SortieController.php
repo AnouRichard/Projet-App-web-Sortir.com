@@ -51,8 +51,8 @@ class SortieController extends AbstractController
                 $lieu->setLongitude($request->request->get("longitude"));
                 $repo = $em->getRepository(Lieux::class);
                 $Lelieu= $repo->find($request->request->get("lieu"));
-                dump($Lelieu['nom']);
-                $lieu->setNom($Lelieu['nom']);
+                //dump($Lelieu['nom']);
+                $lieu->setNom($Lelieu->getNom());
 
                 $lieu->setRue($request->request->get("rue"));
                 dump($lieu);

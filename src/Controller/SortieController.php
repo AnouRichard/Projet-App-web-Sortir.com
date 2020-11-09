@@ -22,9 +22,9 @@ class SortieController extends AbstractController
      */
     public function list(EntityManagerInterface $em)
     {
-        $repo = $em->getRepository(Sorties::class);
-        $Sorties = $repo->findAll();
-        return $this->render("sortie/list.html.twig",["sorties" => $Sorties]);
+       /* $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->findAll();*/
+        return $this->render("sortie/list.html.twig"/*,["sorties" => $Sorties]*/);
     }
     /**
      * @Route("/sorties/add", name="sortie_add")

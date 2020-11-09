@@ -6,6 +6,10 @@
             $(document).ready(function() {
                 $('#ville').change(function () {
                     var idVille = $(this).val();
+                    $('#rue').val("");
+                    $('#codepostal').val("");
+                    $('#latitude').val("");
+                    $('#longitude').val("");
                     $.ajax({
                         url:        '/projet-app-web-sortir.com/public/sorties/add/getLieux',
                         type:       'POST',
@@ -20,20 +24,13 @@
 
                             $('#lieu option'). remove()
                             $.each(data, function( index, value ) {
-                                alert( index + ": " + value );
                                 $('#lieu').append($('<option>', {
                                     value: data[index]['id'],
                                     text: data[index]['nom']
                                 }));
                             });
 
-                            for (var i = 0; i < data.length; i++) {
-                                console.log("boucle :"+i);
 
-
-
-                                console.log("fin boucle :"+i);
-                            }
                             var idlieu = $('#lieu').val();
                             $('#rue').val( data[idlieu]['rue']);
                             $('#codepostal').val(data[idlieu]['codepostal']);

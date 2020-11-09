@@ -69,15 +69,16 @@ class Sorties
      */
     private $etat;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Lieux::class, inversedBy="sorties")
-     */
-    private $lieu;
 
     /**
      * @ORM\OneToMany(targetEntity=Inscriptions::class, mappedBy="sortie")
      */
     private $inscriptions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Lieux::class, inversedBy="sorties")
+     */
+    private $lieu;
 
     public function __construct()
     {
@@ -247,29 +248,6 @@ class Sorties
         return $this;
     }
 
-    /**
-     * @return Collection|Lieux[]
-     */
-    public function getLieu(): Collection
-    {
-        return $this->lieu;
-    }
-
-    public function addLieu(Lieux $lieu): self
-    {
-        if (!$this->lieu->contains($lieu)) {
-            $this->lieu[] = $lieu;
-        }
-
-        return $this;
-    }
-
-    public function removeLieu(Lieux $lieu): self
-    {
-        $this->lieu->removeElement($lieu);
-
-        return $this;
-    }
 
     /**
      * @return Collection|Inscriptions[]
@@ -297,6 +275,18 @@ class Sorties
                 $inscription->setSortie(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLieu(): ?Lieux
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(?Lieux $lieu): self
+    {
+        $this->lieu = $lieu;
 
         return $this;
     }

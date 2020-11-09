@@ -278,5 +278,13 @@ class Participants implements UserInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
 }

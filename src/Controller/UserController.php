@@ -53,9 +53,9 @@ class UserController extends AbstractController
                 $em->persist($user);
                 $em->flush();
 
-                $this->addFlash("success", "Votre compte a bien  été crée!");
+                $this->addFlash("success", "Le compte de l'utilisateur ".$user->getMail()." a bien  été crée!");
 
-                return $this->redirectToRoute("accueil");
+                return $this->redirectToRoute("login");
              }
         }
         return $this->render("main/userForm.html.twig", [

@@ -45,7 +45,7 @@ class Lieux
     private $ville;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Sorties::class, mappedBy="lieu")
+     * @ORM\OneToMany(targetEntity=Sorties::class, mappedBy="lieu")
      */
     private $sorties;
 
@@ -53,6 +53,8 @@ class Lieux
     {
         $this->sorties = new ArrayCollection();
     }
+
+
 
 
     public function getId(): ?int
@@ -148,7 +150,7 @@ class Lieux
     {
         if (!$this->sorties->contains($sorty)) {
             $this->sorties[] = $sorty;
-            $sorty->addLieu($this);
+            $sorty->setLieu($this);
         }
 
         return $this;
@@ -157,7 +159,10 @@ class Lieux
     public function removeSorty(Sorties $sorty): self
     {
         if ($this->sorties->removeElement($sorty)) {
-            $sorty->removeLieu($this);
+            // set the owning side to null (unless already changed)
+            if ($sorty->getLieu() === $this) {
+                $sorty->setLieu(null);
+            }
         }
 
         return $this;

@@ -61,7 +61,7 @@ class SortieController extends AbstractController
                 $sortie->setLieu($lieu);
                 $em->persist($sortie);
                 //$em->persist($lieu);
-
+                unserialize($lieu);
                 $em->flush();
 
                 $this->addFlash("success", "Votre sortie a bien  été crée!");

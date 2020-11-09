@@ -30,7 +30,7 @@ class SortieController extends AbstractController
     /**
      * @Route("/sorties/add", name="sortie_add")
      */
-    public function add(EntityManagerInterface $em,Request $request)
+    public function add(EntityManagerInterface $em,Request $request,UserInterface $user)
     {
         //dump($user->getNom());
 
@@ -54,7 +54,7 @@ class SortieController extends AbstractController
                 return $this->redirectToRoute("accueil");
             }
         }
-        return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView(),"villes" => $ville]);
+        return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView(),"villes" => $ville,"user"=>$user]);
     }
 
     /**

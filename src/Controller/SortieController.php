@@ -39,14 +39,14 @@ class SortieController extends AbstractController
         $sortie= new Sorties();
         $sortieForm = $this->createForm(CreateSortieType::class, $sortie);
         $sortieForm ->handleRequest($request);
-        $maValeur = $request->request->get("ville", " ");
-        dump($maValeur);
+
         if($sortieForm->isSubmitted()){
             if($sortieForm->isValid()) {
                 $sortie->setOrganisateur($user->getId());
                 $sortie->setUrlPhoto("");
                 $sortie->setEtatSortie(1);
                 $lieu= new Lieux();
+                dump($request->request->get("latitude"));
                 $lieu->setLatitude($request->request->get("latitude"));
                 $lieu->setLongitude($request->request->get("longitude"));
                 $lieu->setNom($request->request->get("lieu"));

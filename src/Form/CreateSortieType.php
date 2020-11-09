@@ -27,12 +27,12 @@ class CreateSortieType extends AbstractType
                 'attr'=>['class'=>'' ],
                 'label'=>'Date et heure de la sortie'
             ])
-            ->add('duree',ChoiceType::class,[
+            ->add('duree',TextType::class,[
                 'attr'=>['class'=>'' ],
                 'label'=>'Duree'
             ])
             ->add('dateCloture',DateType::class,[
-                'attr'=>['class'=>'' ],
+                'attr'=>['class'=>'form-control' ],
                 'label'=>'Date limite d inscription'
             ])
             ->add('nbInscriptionMax',NumberType::class,[

@@ -54,6 +54,7 @@ class SortieController extends AbstractController
                 $lieu->setRue($request->request->get("rue"));
                 $sortie->setLieu($lieu);
                 $em->persist($sortie);
+                $em->persist($lieu);
                 $em->flush();
 
                 $this->addFlash("success", "Votre sortie a bien  été crée!");

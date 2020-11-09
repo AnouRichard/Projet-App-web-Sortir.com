@@ -48,6 +48,7 @@ class Participants implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true, unique=true, nullable=false)
+     * * @Assert\NotBlank(message="Le pseudo est obligatoire")
      */
     private $pseudo;
 

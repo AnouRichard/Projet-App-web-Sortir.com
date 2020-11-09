@@ -21,7 +21,7 @@ class UserController extends AbstractController
 
         return $this->render("main/login.html.twig", [
 
-            'error'         => $error,
+            'error'=> $error,
         ]);
     }
 
@@ -36,26 +36,28 @@ class UserController extends AbstractController
     /**
      * @Route("/adduser", name="add_user")
      */
-    public function add(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $encoder)
+    public function addUser(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $encoder)
     {
         $user = new Participants();
         $userForm = $this->createForm(CreateUserType::class, $user);
         $userForm->handleRequest($request);
 
         if($userForm->isSubmitted()){
+            if($userForm->isValid()) {
 
-            $plainPassword = $user->getMotDePasse();
-            $encoded = $encoder->encodePassword($user, $plainPassword);
-            $user->setMotDePasse($encoded);
 
-            $em->persist($user);
-            $em->flush();
+                $plainPassword = $user->getMotDePasse();
+                $encoded = $encoder->encodePassword($user, $plainPassword);
+                $user->setMotDePasse($encoded);
 
-            $this->addFlash("success", "Votre compte a bien  été crée!");
+                $em->persist($user);
+                $em->flush();
 
-            return $this->redirectToRoute("accueil");
+                $this->addFlash("success", "Votre compte a bien  été crée!");
+
+                return $this->redirectToRoute("accueil");
+             }
         }
-
         return $this->render("main/userForm.html.twig", [
             "userForm"=> $userForm->createView()
         ]);

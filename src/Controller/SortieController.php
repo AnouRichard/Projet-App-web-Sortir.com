@@ -43,6 +43,7 @@ class SortieController extends AbstractController
                 $sortie->setDuree("90");
                 $sortie->setOrganisateur("test");
                 $sortie->setUrlPhoto("aa/a");
+                $sortie->setEtatSortie("ouvert");
                 $em->persist($sortie);
                 $em->flush();
 

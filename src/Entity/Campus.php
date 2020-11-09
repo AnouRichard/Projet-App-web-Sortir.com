@@ -56,6 +56,14 @@ class Campus
     }
 
     /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return Collection|Participants[]
      */
     public function getParticipants(): Collection

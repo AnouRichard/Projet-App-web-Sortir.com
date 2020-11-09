@@ -2,8 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Campus;
 use App\Entity\Participants;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,9 +23,11 @@ class CreateUserType extends AbstractType
             ->add('telephone', TextType::class)
             ->add('mail', TextType::class)
             ->add('motDePasse', TextType::class)
-            ->add("confirmation", TextType::class, ['mapped' => false])
-            ->add('campus', TextType::class)
-         /*   ->add('photo') */
+        /*    ->add("confirmation", TextType::class, ['mapped' => false]) */
+            ->add('campus', EntityType::class,[
+            'class'  => Campus::class , "choice_label"=>'nom_campus'
+        ])
+        /*   ->add('photo', FileType::class, ['label' => 'Photo']) */
         ;
     }
 

@@ -13,12 +13,12 @@
              {{ form_row(userForm.telephone) }}
              {{ form_row(userForm.mail) }}
              {{ form_row(userForm.motDePasse) }}
-             {{ form_row(userForm.confirmation) }}
+          {#   {{ form_row(userForm.confirmation) }} #}
              {{ form_row(userForm.campus) }}
-          {#   {{ form_row(userForm.photo) }}   #}
+          {#    {{ form_row(userForm.photo) }} #}
         <div>
              <button class="btn btn-lg btn-secondary m-2"  type="submit">Enregistrer</button>
-             <input type="hidden" name="_target_path" value="accueil"/>
+             <input type="hidden" name="_target_path" value="login"/>
         </div>
              <button class="btn btn-lg btn-secondary m-2"  type="reset">
                  <a href="{{ path('login') }}" >Annuler</a>

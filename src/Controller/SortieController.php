@@ -60,7 +60,7 @@ class SortieController extends AbstractController
                 dump($lieu);
                 $sortie->setLieu($lieu);
                 $em->persist($sortie);
-                $em->persist($lieu);
+                //$em->persist($lieu);
 
                 $em->flush();
 

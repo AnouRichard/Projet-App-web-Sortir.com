@@ -32,7 +32,7 @@ class SortieController extends AbstractController
      */
     public function add(EntityManagerInterface $em,Request $request,UserInterface $user)
     {
-        //dump($user->getNom());
+        dump($user);
 
         $repo = $em->getRepository(Ville::class);
         $ville = $repo->findAll();

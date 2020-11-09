@@ -46,6 +46,13 @@ class SortieController extends AbstractController
                 $sortie->setOrganisateur($user->getId());
                 $sortie->setUrlPhoto("");
                 $sortie->setEtatSortie(1);
+                $lieu= new Lieux();
+                $lieu->setLatitude($request->request->get("latitude"));
+                $lieu->setLongitude($request->request->get("longitude"));
+                $lieu->setNom($request->request->get("lieu"));
+                $lieu->setVille($request->request->get("ville"));
+                $lieu->setRue($request->request->get("rue"));
+                $sortie->setLieu($lieu);
                 $em->persist($sortie);
                 $em->flush();
 

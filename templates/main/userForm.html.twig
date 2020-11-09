@@ -17,10 +17,10 @@
              {{ form_row(userForm.campus) }}
           {#   {{ form_row(userForm.photo) }}   #}
         <div>
-             <button type="submit">Enregistrer</button>
-             <input type="hidden" name="_target_path" value="login"/>
+             <button class="btn btn-lg btn-secondary m-2"  type="submit">Enregistrer</button>
+             <input type="hidden" name="_target_path" value="accueil"/>
         </div>
-             <button type="reset">
+             <button class="btn btn-lg btn-secondary m-2"  type="reset">
                  <a href="{{ path('login') }}" >Annuler</a>
              </button>
 

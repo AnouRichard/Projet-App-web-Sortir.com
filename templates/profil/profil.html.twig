@@ -1,0 +1,62 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} Mon profil {% endblock %}
+
+
+
+{% block main %}
+    <div class="row justify-content-center">
+        {% include ('inc/nav.html.twig') %}
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="row justify-content-center col-12">
+                    <h2>Pseudo!!!</h2>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <h2>Photo profil</h2>
+                </div>
+                <div class="col-6">
+                    <div class="row mt-3">
+                        <div class="col-4"><h4>Prénom :</h4></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4"><h4>Nom :</h4></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4"><h4>Téléphone:</h4></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4"><h4>Mot de passe:</h4></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4"><h4>Confirmation:</h4></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4"><h4>Campus:</h4></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4"><h4>Ma photo:</h4></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div>
+                    <button class="btn btn-lg btn-secondary m-2" type="button" >
+                        <a href="{{ path('profil_modif') }}" >Modifier</a>
+                    </button>
+                </div>
+                <div>
+                    <button class="btn btn-lg btn-secondary m-2"  type="reset">
+                        <a href="{{ path('accueil') }}" >Annuler</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -52,6 +52,7 @@ class SortieController extends AbstractController
                 $lieu->setNom($request->request->get("lieu"));
 
                 $lieu->setRue($request->request->get("rue"));
+                dump($lieu);
                 $sortie->setLieu($lieu);
                 $em->persist($sortie);
                 $em->persist($lieu);

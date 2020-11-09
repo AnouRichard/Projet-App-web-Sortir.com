@@ -73,8 +73,8 @@
                         <tr>
 
                             <td>{{ sortie.nom|e }}</td>
-                            <td>{{ sortie.dateDeDebut|e }}</td>
-                            <td>{{ sortie.dateCloture|e }}</td>
+                            <td>{{ sortie.dateDeDebut|date("m/d/Y") }}</td>
+                            <td>{{ sortie.dateCloture|date("m/d/Y") }}</td>
                             <td>etat</td>
                             <td>isncrit</td>
                             <td>organisateur</td>

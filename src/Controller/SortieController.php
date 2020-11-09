@@ -26,8 +26,9 @@ class SortieController extends AbstractController
     /**
      * @Route("/sorties/add", name="sortie_add")
      */
-    public function add(EntityManagerInterface $em,Request $request)
+    public function add(EntityManagerInterface $em,Request $request,UserInterface $user)
     {
+        dump($user->getNom());
         $repo = $em->getRepository(Ville::class);
         $ville = $repo->findAll();
         $sortie= new Sorties();

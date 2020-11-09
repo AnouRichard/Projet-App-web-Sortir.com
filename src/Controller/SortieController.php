@@ -40,7 +40,9 @@ class SortieController extends AbstractController
         dump($maValeur);
         if($sortieForm->isSubmitted()){
             if($sortieForm->isValid()) {
-
+                $sortie->setDuree("90");
+                $sortie->setOrganisateur("test");
+                $sortie->setUrlPhoto("aa/a");
                 $em->persist($sortie);
                 $em->flush();
 

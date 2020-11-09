@@ -43,9 +43,9 @@ class SortieController extends AbstractController
         dump($maValeur);
         if($sortieForm->isSubmitted()){
             if($sortieForm->isValid()) {
-                $sortie->setOrganisateur("test");
-                $sortie->setUrlPhoto("aa/a");
-                $sortie->setEtatSortie("ouvert");
+                $sortie->setOrganisateur($user->getId());
+                $sortie->setUrlPhoto("");
+                $sortie->setEtatSortie(1);
                 $em->persist($sortie);
                 $em->flush();
 

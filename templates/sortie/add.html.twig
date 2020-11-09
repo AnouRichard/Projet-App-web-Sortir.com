@@ -37,7 +37,14 @@
                             $('#latitude').val(data[idlieu]['latitude']);
                             $('#longitude').val(data[idlieu]['longitude']);
 
+                            $('#lieu').change(function () {
+                                var idlieu = $('#lieu').val();
+                                $('#rue').val( data[idlieu]['rue']);
+                                $('#codepostal').val(data[idlieu]['codepostal']);
+                                $('#latitude').val(data[idlieu]['latitude']);
+                                $('#longitude').val(data[idlieu]['longitude']);
 
+                            });
                         }
                     });
                 });

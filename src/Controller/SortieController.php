@@ -27,9 +27,10 @@ class SortieController extends AbstractController
     /**
      * @Route("/sorties/add", name="sortie_add")
      */
-    public function add(EntityManagerInterface $em,Request $request,UserInterface $user)
+    public function add(EntityManagerInterface $em,Request $request)
     {
-        dump($user->getNom());
+        //dump($user->getNom());
+
         $repo = $em->getRepository(Ville::class);
         $ville = $repo->findAll();
         $sortie= new Sorties();
@@ -37,6 +38,17 @@ class SortieController extends AbstractController
         $sortieForm ->handleRequest($request);
         $maValeur = $request->request->get("ville", " ");
         dump($maValeur);
+        if($sortieForm->isSubmitted()){
+            if($sortieForm->isValid()) {
+
+                $em->persist($sortie);
+                $em->flush();
+
+                $this->addFlash("success", "Votre sortie a bien  été crée!");
+
+                return $this->redirectToRoute("accueil");
+            }
+        }
         return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView(),"villes" => $ville]);
     }
 

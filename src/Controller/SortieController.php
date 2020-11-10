@@ -36,7 +36,7 @@ class SortieController extends AbstractController
 
         dump($Sorties);
 
-        return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants]);
+        return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user]);
     }
     /**
      * @Route("/sorties/add", name="sortie_add")

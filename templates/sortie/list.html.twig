@@ -79,16 +79,14 @@
                             <td>{{ sortie.dateCloture|date("m/d/Y") }}</td>
                             <td>
                                 {% if sortie.inscriptions is defined  %}
-
-
                                         {{ sortie.inscriptions|length}}/{{ sortie.nbInscriptionMax}}
-
-
                                 {% endif %}
                             </td>
                             <td>
                                 {% if sortie.etat.libelle is defined  %}{{ sortie.etat.libelle}}{% endif %}</td>
-                            <td>inscrit</td>
+                            <td>
+
+                            </td>
                             <td>
                                 {% for participant in participants %}
                                     {% if participant.id==sortie.organisateur  %}

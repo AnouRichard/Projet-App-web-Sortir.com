@@ -31,7 +31,7 @@ class SortieController extends AbstractController
         $participants=$repo->findAll();
         dump($participants);
 
-        dump($Sorties[0]);
+        dump($Sorties);
 
         return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants]);
     }

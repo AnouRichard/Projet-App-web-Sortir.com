@@ -28,7 +28,7 @@ class SortieType extends AbstractType
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Date et heure de la sortie'
             ])
-            ->add('duree',ChoiceType::class,[
+            ->add('duree',NumberType::class,[
                 'attr'=>['class'=>'form-control' ],
                 'label'=>'Duree'
             ])

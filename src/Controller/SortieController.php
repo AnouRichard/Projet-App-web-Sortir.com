@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Etats;
 use App\Entity\Lieux;
 use App\Entity\Sorties;
 use App\Entity\Ville;
@@ -48,7 +49,10 @@ class SortieController extends AbstractController
                 $lieu= new Lieux();
                 $repo = $em->getRepository(Lieux::class);
                 $Lelieu= $repo->find($request->request->get("lieu"));
+                $repo = $em->getRepository(Etats::class);
+                $Etat=$repo->findOneBy(array("libelle"=>"Ouvert"));
                 $sortie->setLieu($Lelieu);
+                $sortie->setEtat($Etat);
                 $em->persist($sortie);
                 $em->flush();
 

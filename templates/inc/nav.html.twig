@@ -3,9 +3,10 @@
         <a href="{{ path('accueil') }}">Accueil</a>
         <a href="{{ path('accueil') }}">Villes</a>
         <a href="{{ path('accueil') }}">Campus</a>
-         {% if app.user %}
         <a href="{{ path('profil', {id:app.user.id}) }}">Mon Profil</a>
         <a href="{{ path('logout') }}">Se déconnecter</a>
-         {% endif %}
+        {% if app.user.administrateur %}
+            <a href="{{ path('add_user') }}">Ajouter un utilisateur</a>
+        {% endif %}
     </ul>
 </nav>

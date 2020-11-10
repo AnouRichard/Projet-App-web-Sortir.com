@@ -97,6 +97,11 @@ class Participants implements UserInterface
     private $campus;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photo;
+
+    /**
      * @ORM\OneToMany(targetEntity=Inscriptions::class, mappedBy="Participant")
      */
     private $inscriptions;
@@ -104,6 +109,22 @@ class Participants implements UserInterface
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     */
+    public function setPhoto($photo): void
+    {
+        $this->photo = $photo;
     }
 
 

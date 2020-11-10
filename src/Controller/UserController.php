@@ -3,12 +3,14 @@ namespace App\Controller;
 
 use App\Entity\Participants;
 use App\Form\CreateUserType;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 class UserController extends AbstractController
 {
@@ -36,19 +38,23 @@ class UserController extends AbstractController
     /**
      * @Route("/adduser", name="add_user")
      */
-    public function addUser(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $encoder)
+    public function addUser(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $encoder, FileUploader $fileUploader)
     {
         $user = new Participants();
         $userForm = $this->createForm(CreateUserType::class, $user);
         $userForm->handleRequest($request);
 
-        if($userForm->isSubmitted()){
-            if($userForm->isValid()) {
-
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
 
                 $plainPassword = $user->getMotDePasse();
                 $encoded = $encoder->encodePassword($user, $plainPassword);
                 $user->setMotDePasse($encoded);
+
+                $photo = $userForm->get('photo')->getData();
+            if ($photo) {
+                $filename = $fileUploader->upload($photo);
+                $user->setPhoto($filename);
+
 
                 $em->persist($user);
                 $em->flush();

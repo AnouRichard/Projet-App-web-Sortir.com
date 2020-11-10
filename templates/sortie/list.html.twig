@@ -88,6 +88,7 @@
                                 {% if sortie.inscriptions is defined  %}
                                     {% for inscription in sortie.inscriptions %}
                                         {% if inscription.Participant.id==user.id  %}
+                                            {% set presence = true %}
                                             X
                                         {% endif %}
                                     {% endfor %}
@@ -101,7 +102,13 @@
                                     {% endif %}
                                 {% endfor %}
                             </td>
-                            <td></td>
+                            <td>
+                                {% if sortie.etat.libelle=="En creation" and sortie.organisateur==user.id  %}
+                                    Modifier
+                                {% else %}
+                                    Afficher
+                                {% endif %}
+                            </td>
 
                         </tr>
                         {% endfor %}

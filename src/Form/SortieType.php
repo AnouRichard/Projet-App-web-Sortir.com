@@ -25,8 +25,9 @@ class SortieType extends AbstractType
                 'label'=>'Nom'
             ])
             ->add('dateDeDebut',DateTimeType::class,[
+                'widget'=>'text',
                 'attr'=>['class'=>'form-control' ],
-                'attr'=>['class'=>'form-control' ],
+
                 'label'=>'Date et heure de la sortie'
             ])
             ->add('duree',NumberType::class,[

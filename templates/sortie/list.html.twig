@@ -105,9 +105,9 @@
                             </td>
                             <td>
                                 {% if sortie.etat.libelle=="En creation" and sortie.organisateur==user.id  %}
-                                    Modifier
+                                    Modifier - publier
                                 {% else %}
-                                    Afficher
+                                    Afficher - annuler
                                 {% endif %}
                                 {% if presence==true and sortie.organisateur!=user.id  %}
                                     - se desister

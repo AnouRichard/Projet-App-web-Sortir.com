@@ -89,7 +89,7 @@
                                 {% if sortie.inscriptions is defined  %}
                                     {% for inscription in sortie.inscriptions %}
                                         {% if inscription.Participant.id==user.id  %}
-                                            {% presence = true %}
+                                            {% set presence = true %}
                                             X
                                         {% endif %}
                                     {% endfor %}

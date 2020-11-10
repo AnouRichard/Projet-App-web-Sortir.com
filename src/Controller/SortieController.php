@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Etats;
 use App\Entity\Lieux;
 use App\Entity\Sorties;
 use App\Entity\Ville;
@@ -20,39 +21,46 @@ class SortieController extends AbstractController
     /**
      * @Route("/sorties", name="sortie_list")
      */
-    public function list()
+    public function list(EntityManagerInterface $em,UserInterface $user)
     {
-        return $this->render("sortie/list.html.twig");
+        dump($user);
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->findAll();
+        return $this->render("sortie/list.html.twig",["sorties" => $Sorties]);
     }
     /**
      * @Route("/sorties/add", name="sortie_add")
      */
-    public function add(EntityManagerInterface $em,Request $request)
+    public function add(EntityManagerInterface $em,Request $request,UserInterface $user)
     {
-        //dump($user->getNom());
+        dump($user);
 
         $repo = $em->getRepository(Ville::class);
         $ville = $repo->findAll();
         $sortie= new Sorties();
         $sortieForm = $this->createForm(CreateSortieType::class, $sortie);
         $sortieForm ->handleRequest($request);
-        $maValeur = $request->request->get("ville", " ");
-        dump($maValeur);
+
         if($sortieForm->isSubmitted()){
             if($sortieForm->isValid()) {
-                $sortie->setDuree("90");
-                $sortie->setOrganisateur("test");
-                $sortie->setUrlPhoto("aa/a");
-                $sortie->setEtatSortie("ouvert");
+                $sortie->setOrganisateur($user->getId());
+                $sortie->setUrlPhoto("");
+                $sortie->setEtatSortie(1);
+                $repo = $em->getRepository(Lieux::class);
+                $Lelieu= $repo->find($request->request->get("lieu"));
+                $repo = $em->getRepository(Etats::class);
+                $Etat=$repo->findOneBy(array("libelle"=>"Ouvert"));
+                $sortie->setLieu($Lelieu);
+                $sortie->setEtat($Etat);
                 $em->persist($sortie);
                 $em->flush();
 
                 $this->addFlash("success", "Votre sortie a bien  été crée!");
 
-                return $this->redirectToRoute("accueil");
+                return $this->redirectToRoute("sortie_list");
             }
         }
-        return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView(),"villes" => $ville]);
+        return $this->render("sortie/add.html.twig",["sortieForm" => $sortieForm->createView(),"villes" => $ville,"user"=>$user]);
     }
 
     /**

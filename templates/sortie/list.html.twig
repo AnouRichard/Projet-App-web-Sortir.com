@@ -77,7 +77,15 @@
                             <td>{{ sortie.nom|e }}</td>
                             <td>{{ sortie.dateDeDebut|date("m/d/Y") }}</td>
                             <td>{{ sortie.dateCloture|date("m/d/Y") }}</td>
-                            <td>place</td>
+                            <td>
+                                {% if sortie.inscriptions is defined  %}
+                                {% for inscription in sortie.inscriptions %}
+
+                                        {{ inscription.Participant|length) }}
+
+                                {% endfor %}
+                                {% endif %}
+                            </td>
                             <td>
                                 {% if sortie.etat.libelle is defined  %}{{ sortie.etat.libelle}}{% endif %}</td>
                             <td>inscrit</td>

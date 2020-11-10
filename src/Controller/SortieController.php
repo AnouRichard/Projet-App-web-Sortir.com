@@ -46,7 +46,6 @@ class SortieController extends AbstractController
                 $sortie->setOrganisateur($user->getId());
                 $sortie->setUrlPhoto("");
                 $sortie->setEtatSortie(1);
-                $lieu= new Lieux();
                 $repo = $em->getRepository(Lieux::class);
                 $Lelieu= $repo->find($request->request->get("lieu"));
                 $repo = $em->getRepository(Etats::class);

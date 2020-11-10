@@ -35,7 +35,7 @@ class SortieType extends AbstractType
                 'label'=>'Duree'
             ])
             ->add('dateCloture',DateType::class,[
-                'attr'=>['class'=>'' ],
+                'attr'=>['class'=>' ' ],
                 'label'=>'Date limite d inscription'
             ])
             ->add('nbInscriptionMax',NumberType::class,[

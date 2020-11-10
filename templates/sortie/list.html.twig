@@ -75,7 +75,7 @@
                             <td>{{ sortie.dateCloture|date("m/d/Y") }}</td>
                             <td>place</td>
                             <td>
-                                {% if sortie.etat.libelle == false %}{{ sortie.etat.libelle}}{% endif %}</td>
+                                {% if sortie.etat.libelle is defined  %}{{ sortie.etat.libelle}}{% endif %}</td>
                             <td>inscrit</td>
                             <td>organisateur</td>
                             <td></td>

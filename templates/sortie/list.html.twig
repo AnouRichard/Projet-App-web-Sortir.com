@@ -73,7 +73,7 @@
                         <tbody>
                         {% for sortie in sorties %}
                         <tr>
-                            {% set presence  %}
+                            {% set presence=false  %}
                             <td>{{ sortie.nom|e }}</td>
                             <td>{{ sortie.dateDeDebut|date("m/d/Y") }}</td>
                             <td>{{ sortie.dateCloture|date("m/d/Y") }}</td>

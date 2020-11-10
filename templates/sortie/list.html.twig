@@ -79,6 +79,7 @@
                             <td>{{ sortie.dateCloture|date("m/d/Y") }}</td>
                             <td>
                                 {% if sortie.inscriptions is defined  %}
+                                    {% set nbInscrit = sortie.inscriptions|length %}
                                         {{ sortie.inscriptions|length}}/{{ sortie.nbInscriptionMax}}
                                 {% endif %}
                             </td>
@@ -107,6 +108,12 @@
                                     Modifier
                                 {% else %}
                                     Afficher
+                                {% endif %}
+                                {% if presence==true and sortie.organisateur!=user.id  %}
+                                    - se desister
+                                {% endif %}
+                                {% if presence!=true and sortie.organisateur!=user.id and nbInscrit<sortie.nbInscriptionMax and sortie.etat.libelle=="ouvert" %}
+                                    - s'inscrire
                                 {% endif %}
                             </td>
 

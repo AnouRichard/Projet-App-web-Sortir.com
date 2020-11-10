@@ -3,6 +3,7 @@ namespace App\Controller;
 
 
 use App\Entity\Etats;
+use App\Entity\Inscriptions;
 use App\Entity\Lieux;
 use App\Entity\Participants;
 use App\Entity\Sorties;
@@ -29,7 +30,9 @@ class SortieController extends AbstractController
         $Sorties = $repo->findAll();
         $repo = $em->getRepository(Participants::class);
         $participants=$repo->findAll();
-        dump($participants);
+        $repo = $em->getRepository(Inscriptions::class);
+        $inscirption=$repo->findAll();
+        dump($inscirption);
 
         dump($Sorties);
 

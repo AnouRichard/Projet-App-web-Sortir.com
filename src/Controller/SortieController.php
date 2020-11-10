@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Etats;
 use App\Entity\Lieux;
+use App\Entity\Participants;
 use App\Entity\Sorties;
 use App\Entity\Ville;
 use App\Form\CreateSortieType;
@@ -23,9 +24,14 @@ class SortieController extends AbstractController
      */
     public function list(EntityManagerInterface $em,UserInterface $user)
     {
-        dump($user);
+
         $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->findAll();
+        $repo = $em->getRepository(Participants::class);
+        $participants=$repo->findAll();
+        dump($participants);
+        dump($Sorties);
+
         return $this->render("sortie/list.html.twig",["sorties" => $Sorties]);
     }
     /**

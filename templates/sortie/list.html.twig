@@ -85,6 +85,13 @@
                             <td>
                                 {% if sortie.etat.libelle is defined  %}{{ sortie.etat.libelle}}{% endif %}</td>
                             <td>
+                                {% if sortie.inscriptions is defined  %}
+                                    {% for inscription in sortie.inscriptions %}
+                                        {% if inscription.Participant.id==user.id  %}
+                                            X
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
 
                             </td>
                             <td>

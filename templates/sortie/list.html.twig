@@ -2,7 +2,7 @@
 {% block main %}
 
         {% for inscription in sorties[0].inscriptions %}
-            {{ dump(inscription.dateInscription) }}
+            {{ dump(inscription.Participant.nom) }}
         {% endfor %}
 
     <div class="row justify-content-center ">

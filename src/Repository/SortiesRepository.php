@@ -26,7 +26,7 @@ class SortiesRepository extends ServiceEntityRepository
     public function findSorties()
     {
         return $this->createQueryBuilder('s')
-            ->innerJoin()
+            //->innerJoin()
             ->andWhere('s.etat = :val')
            // ->andWhere('s.inscriptions= :val2')
             ->setParameter('val',1)

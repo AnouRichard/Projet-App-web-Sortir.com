@@ -56,7 +56,7 @@ class SortiesRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->getResult();
-        $requete->andWhere('p = :val2')->setParameter('val2',4);
+       dump($requete);
         return $requete;
 
 

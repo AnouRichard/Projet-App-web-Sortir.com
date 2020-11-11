@@ -30,6 +30,9 @@ class SortiesRepository extends ServiceEntityRepository
         foreach ($parametres as $key=> $value){
             dump($key);
             switch ($key) {
+                case "nomSortie":
+                    $conditions=$conditions."s.nom like '%".$value."%'";
+                    break;
                 case "campus":
                     $conditions=$conditions."c = ".$value;
                     break;

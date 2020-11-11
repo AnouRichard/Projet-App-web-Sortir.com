@@ -35,7 +35,7 @@ class SortieController extends AbstractController
         $inscirption=$repo->findAll();
         $repo = $em->getRepository(Campus::class);
         $campus=$repo->findAll();
-        dump($request->request->get("campus"));
+        dump($request->request->all());
         dump($inscirption);
         dump($Sorties);
 

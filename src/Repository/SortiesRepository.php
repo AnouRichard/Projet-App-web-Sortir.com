@@ -54,13 +54,7 @@ class SortiesRepository extends ServiceEntityRepository
             ->innerJoin('i.Participant','p')
             ->innerJoin('p.campus','c')
             ->innerJoin('s.etat','e')
-
-            //->andWhere('s.etat = :val')
-            ->andWhere($conditions)
-
-            // ->setParameter('val',1)
-            //->setParameter('val2',4)
-            //->setParameter('val3',1)
+            //->andWhere($conditions)
             ->orderBy('s.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()

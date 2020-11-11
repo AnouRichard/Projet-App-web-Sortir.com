@@ -25,7 +25,7 @@ class SortiesRepository extends ServiceEntityRepository
 
     public function findSorties($parametres,$user)
     {
-        $verifor="";
+        $verifor="and";
         $conditions="";
         foreach ($parametres as $key=> $value){
             dump($key);

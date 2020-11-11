@@ -13,43 +13,44 @@
                        <div class="col-12">
                            <label for="campus">Campus</label>
                            <select id="campus" name="campus" class="form-control form-control-lg">
-                               <option value="test">test</option>
-                               <option value="test2">test2</option>
+                               {% for uncampus in campus %}
+                                   <option value="{{ uncampus.id|e }}">{{ uncampus.nomcampus|e }}</option>
+                               {% endfor %}
                            </select>
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-12">
                            <label for="nomSortie">Le nom de la sortie contient</label>
-                           <input type="text" class="form-control form-control-lg" id="nomSortie">
+                           <input type="text" name="nomSortie" class="form-control form-control-lg" id="nomSortie">
                        </div>
                    </div>
                    <div class="row">
                         <div class="col-6">
                             <label for="entreDate">Entre</label>
-                            <input type="date" id="entreDate" name="trip-start" class="form-control form-control-lg">
+                            <input type="date" id="entreDate" name="entreDate" class="form-control form-control-lg">
                         </div>
                        <div class="col-6">
                            <label for="sortieDate">et</label>
-                           <input type="date" id="sortieDate" name="trip-start" class="form-control form-control-lg">
+                           <input type="date" id="sortieDate" name="sortieDate" class="form-control form-control-lg">
                        </div>
                    </div>
                </div>
                 <div class="col-5" >
                     <div class="row">
-                        <input type="checkbox" id="sortieOrga" class="">
+                        <input type="checkbox" name="sortieOrga" id="sortieOrga" class="">
                         <label for="sortieOrga">Sorties dont je suis L'organisateur/trice</label>
                     </div>
                     <div class="row">
-                        <input type="checkbox" id="sortieinscrit" class="">
+                        <input type="checkbox" id="sortieinscrit" name="sortieinscrit" class="">
                         <label for="sortieinscrit">Sorties auxquelles je suis inscrit/e</label>
                     </div>
                     <div class="row">
-                        <input type="checkbox" id="sortiePasInscrit" class="" >
+                        <input type="checkbox" id="sortiePasInscrit" name="sortiePasInscrit" class="" >
                         <label for="sortiePasInscrit">Sorties auxquelles je ne suis pas inscrit/e</label>
                     </div>
                     <div class="row">
-                        <input type="checkbox" id="sortiepasse"  class="">
+                        <input type="checkbox" id="sortiepasse" name="sortiepasse"  class="">
                         <label for="sortiepasse">Sorties passées</label>
                     </div>
                 </div>

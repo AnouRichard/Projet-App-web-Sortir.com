@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Campus;
 use App\Entity\Etats;
 use App\Entity\Inscriptions;
 use App\Entity\Lieux;
@@ -32,11 +33,13 @@ class SortieController extends AbstractController
         $participants=$repo->findAll();
         $repo = $em->getRepository(Inscriptions::class);
         $inscirption=$repo->findAll();
+        $repo = $em->getRepository(Campus::class);
+        $campus=$repo->findAll();
         dump($request->request->get("campus"));
         dump($inscirption);
         dump($Sorties);
 
-        return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user]);
+        return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus]);
     }
     /**
      * @Route("/sorties/add", name="sortie_add")

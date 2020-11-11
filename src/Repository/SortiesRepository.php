@@ -48,7 +48,7 @@ class SortiesRepository extends ServiceEntityRepository
 
             //->andWhere('s.etat = :val')
             //->andWhere('p = :val2')
-            ->andWhere('c = :val3')
+            ->andWhere('')
             // ->setParameter('val',1)
             //->setParameter('val2',4)
             ->setParameter('val3',1)

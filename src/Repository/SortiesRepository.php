@@ -28,25 +28,39 @@ class SortiesRepository extends ServiceEntityRepository
         foreach ($parametres as $key=> $value){
             dump($key);
             dump($value);
+            switch ($value) {
+                case 0:
+                    echo "i égal 0";
+                    break;
+                case 1:
+                    echo "i égal 1";
+                    break;
+                case 2:
+                    echo "i égal 2";
+                    break;
+            }
         }
 
-        return $this->createQueryBuilder('s')
+        $requete=$this->createQueryBuilder('s')
             ->innerJoin('s.inscriptions','i')
             ->innerJoin('i.Participant','p')
             ->innerJoin('p.campus','c')
+
             //->andWhere('s.etat = :val')
-            ->andWhere('p = :val2')
+            //->andWhere('p = :val2')
             ->andWhere('c = :val3')
-           // ->setParameter('val',1)
-            ->setParameter('val2',4)
+            // ->setParameter('val',1)
+            //->setParameter('val2',4)
             ->setParameter('val3',2)
             ->orderBy('s.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
+            ->getResult();
+        $requete->andWhere('p = :val2')->setParameter('val2',4);
+        return $requete;
 
 
-        ;
+
     }
 
 

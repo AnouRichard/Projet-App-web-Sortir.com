@@ -29,7 +29,7 @@ class SortiesRepository extends ServiceEntityRepository
             ->innerJoin('s.inscriptions','i')
             ->innerJoin('i.Participant','p')
             //->andWhere('s.etat = :val')
-            ->andWhere('p.id = :val2')
+            ->andWhere('p = :val2')
            // ->setParameter('val',1)
             ->setParameter('val2',3)
             ->orderBy('s.id', 'ASC')

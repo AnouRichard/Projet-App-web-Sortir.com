@@ -34,7 +34,7 @@ class SortiesRepository extends ServiceEntityRepository
             ->andWhere('c = :val3')
            // ->setParameter('val',1)
             ->setParameter('val2',4)
-            ->setParameter('val3',1)
+            ->setParameter('val3',2)
             ->orderBy('s.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()

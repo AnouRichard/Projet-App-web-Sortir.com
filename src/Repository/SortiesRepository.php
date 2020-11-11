@@ -34,17 +34,20 @@ class SortiesRepository extends ServiceEntityRepository
                     $conditions=$conditions."c = ".$value;
                     break;
                 case "sortieOrga":
-                    $conditions=$conditions." and s.organisateur = ".$user->getId();
+                    $conditions=$conditions.$verifor." s.organisateur = ".$user->getId();
+                    $verifor=" or";
                     break;
                 case "sortieinscrit":
-                    $conditions=$conditions." and p = ".$user->getId();
+                    $conditions=$conditions.$verifor." p = ".$user->getId();
                     $verifor=" or";
                     break;
                 case "sortiePasInscrit":
                     $conditions=$conditions.$verifor." p != ".$user->getId();
+                    $verifor=" or";
                     break;
                 case "sortiepasse":
-                    $conditions=$conditions." e = 'Ferme' ";
+                    $conditions=$conditions.$verifor." e = 'Ferme' ";
+                    $verifor=" or";
                     break;
             }
         }

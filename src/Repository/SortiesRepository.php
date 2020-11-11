@@ -26,7 +26,7 @@ class SortiesRepository extends ServiceEntityRepository
     public function findSorties()
     {
         return $this->createQueryBuilder('s')
-            ->addSelect('e')
+            //->addSelect('e')
             ->andWhere('s.etat_id = :val')
             ->setParameter('val',1)
             ->orderBy('s.id', 'ASC')

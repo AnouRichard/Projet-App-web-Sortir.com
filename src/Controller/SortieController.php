@@ -23,7 +23,7 @@ class SortieController extends AbstractController
     /**
      * @Route("/sorties", name="sortie_list")
      */
-    public function list(EntityManagerInterface $em,UserInterface $user)
+    public function list(EntityManagerInterface $em,UserInterface $user,Request $request)
     {
 
         $repo = $em->getRepository(Sorties::class);
@@ -32,8 +32,8 @@ class SortieController extends AbstractController
         $participants=$repo->findAll();
         $repo = $em->getRepository(Inscriptions::class);
         $inscirption=$repo->findAll();
+        dump($request->request->get("campus"));
         dump($inscirption);
-
         dump($Sorties);
 
         return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user]);

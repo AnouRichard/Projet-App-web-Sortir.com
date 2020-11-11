@@ -56,7 +56,7 @@ class SortiesRepository extends ServiceEntityRepository
             ->innerJoin('s.etat','e')
 
             //->andWhere('s.etat = :val')
-            ->andWhere('p = 4 and s=1')
+            ->andWhere($conditions)
 
             // ->setParameter('val',1)
             //->setParameter('val2',4)

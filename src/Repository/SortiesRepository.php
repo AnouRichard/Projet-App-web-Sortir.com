@@ -27,7 +27,7 @@ class SortiesRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('s')
             //->addSelect('e')
-            ->andWhere('s.etat = :val')
+            ->andWhere('s.etat.libelle = :val')
             ->setParameter('val',"ouvert")
             ->orderBy('s.id', 'ASC')
             ->setMaxResults(10)

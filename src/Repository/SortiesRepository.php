@@ -50,10 +50,10 @@ class SortiesRepository extends ServiceEntityRepository
         }
             dump($conditions);
         $requete=$this->createQueryBuilder('s')
-           /* ->innerJoin('s.inscriptions','i')
+           ->innerJoin('s.inscriptions','i')
             ->innerJoin('i.Participant','p')
             ->innerJoin('p.campus','c')
-            ->innerJoin('s.etat','e')*/
+           // ->innerJoin('s.etat','e')
             //->andWhere($conditions)
             ->orderBy('s.id', 'ASC')
             ->setMaxResults(10)

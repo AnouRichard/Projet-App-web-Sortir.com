@@ -23,28 +23,37 @@ class SortiesRepository extends ServiceEntityRepository
      * @return Sorties[] Returns an array of Sorties objects
      */
 
-    public function findSorties($parametres)
+    public function findSorties($parametres,$user)
     {
+        $verifor="and";
+        $conditions="";
         foreach ($parametres as $key=> $value){
-            dump($key);
-            dump($value);
+
             switch ($value) {
-                case 0:
-                    echo "i égal 0";
+                case "campus":
+                    $conditions=$conditions."c = ".$value;
                     break;
-                case 1:
-                    echo "i égal 1";
+                case "sortieOrga":
+                    $conditions=$conditions." and s.organisateur = ".$user->getId();
                     break;
-                case 2:
-                    echo "i égal 2";
+                case "sortieinscrit":
+                    $conditions=$conditions." and p = ".$user->getId();
+                    $verifor="or";
+                    break;
+                case "sortiePasInscrit":
+                    $conditions=$conditions.$verifor." p != ".$user->getId();
+                    break;
+                case "sortiepasse":
+                    $conditions=$conditions." e = 'Ferme' ";
                     break;
             }
         }
-
+            dump($conditions);
         $requete=$this->createQueryBuilder('s')
             ->innerJoin('s.inscriptions','i')
             ->innerJoin('i.Participant','p')
             ->innerJoin('p.campus','c')
+            ->innerJoin('s.etat','e')
 
             //->andWhere('s.etat = :val')
             ->andWhere('p = 4 and s=1')

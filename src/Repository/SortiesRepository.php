@@ -25,7 +25,10 @@ class SortiesRepository extends ServiceEntityRepository
 
     public function findSorties($parametres)
     {
-        dump($parametres);
+        foreach ($parametres as $value){
+            dump($value);
+        }
+
         return $this->createQueryBuilder('s')
             ->innerJoin('s.inscriptions','i')
             ->innerJoin('i.Participant','p')

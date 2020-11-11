@@ -28,8 +28,8 @@ class SortiesRepository extends ServiceEntityRepository
         $verifor="and";
         $conditions="";
         foreach ($parametres as $key=> $value){
-
-            switch ($value) {
+            dump($key);
+            switch ($key) {
                 case "campus":
                     $conditions=$conditions."c = ".$value;
                     break;

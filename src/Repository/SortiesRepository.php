@@ -47,7 +47,7 @@ class SortiesRepository extends ServiceEntityRepository
             ->innerJoin('p.campus','c')
 
             //->andWhere('s.etat = :val')
-            ->andWhere('')
+            //->andWhere('')
 
             // ->setParameter('val',1)
             //->setParameter('val2',4)

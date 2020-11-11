@@ -53,7 +53,7 @@ class SortiesRepository extends ServiceEntityRepository
         }
             dump($conditions);
         $requete=$this->createQueryBuilder('s')
-           ->leftJoin('s.inscriptions','i')
+           ->Join('s.inscriptions','i')
            //->Join('i.Participant','p')
             //->innerJoin('p.campus','c')
            ->innerJoin('s.etat','e')

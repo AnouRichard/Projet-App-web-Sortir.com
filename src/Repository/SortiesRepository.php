@@ -57,7 +57,7 @@ class SortiesRepository extends ServiceEntityRepository
            /* ->leftJoin('i.Participant','p')
             ->leftJoin('p.campus','c')
            ->leftJoin('s.etat','e')*/
-            ->andWhere($conditions)
+            //->andWhere($conditions)
             ->orderBy('s.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()

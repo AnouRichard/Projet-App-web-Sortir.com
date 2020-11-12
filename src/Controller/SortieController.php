@@ -30,7 +30,9 @@ class SortieController extends AbstractController
         $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->findAll();
         if(!empty($_POST)){
-        $lesSortie=$repo->findSorties($request->request->all(),$user);}
+
+        $lesSortie=$repo->findSorties($request->request->all(),$user);
+            dump($lesSortie);}
         $repo = $em->getRepository(Participants::class);
         $participants=$repo->findAll();
         $repo = $em->getRepository(Inscriptions::class);
@@ -39,7 +41,7 @@ class SortieController extends AbstractController
         $campus=$repo->findAll();
         dump($request->request->all());
 
-        dump($lesSortie);
+
 
         return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus]);
     }

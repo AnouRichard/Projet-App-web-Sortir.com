@@ -29,7 +29,8 @@ class SortieController extends AbstractController
 
         $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->findAll();
-        $lesSortie=$repo->findSorties($request->request->all(),$user);
+        if(!empty($_POST)){
+        $lesSortie=$repo->findSorties($request->request->all(),$user);}
         $repo = $em->getRepository(Participants::class);
         $participants=$repo->findAll();
         $repo = $em->getRepository(Inscriptions::class);

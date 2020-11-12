@@ -123,7 +123,7 @@
                                     - <a href="/projet-app-web-sortir.com/public/sorties/desister/{{ sortie.id }}">se desister</a>
                                 {% endif %}
                                 {% if presence!=true and sortie.organisateur!=user.id and nbInscrit<sortie.nbInscriptionMax and sortie.etat.libelle=="ouvert" %}
-                                    - <a href="/projet-app-web-sortir.com/public/sorties/incription/{{ sortie.id }}">s'inscrire</a>
+                                    - <a href="/projet-app-web-sortir.com/public/sorties/inscription/{{ sortie.id }}">s'inscrire</a>
                                 {% endif %}
                             </td>
 

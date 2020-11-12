@@ -34,6 +34,7 @@ class SortieController extends AbstractController
         $Sorties = $repo->find($id);
         $repo = $em->getRepository(Sorties::class);
         $Participant= $repo->find($Sorties->getOrganisateur());
+        dump($Participant);
 
 
 

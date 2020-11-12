@@ -99,6 +99,9 @@ class SortiesRepository extends ServiceEntityRepository
                     break;
             }
         }
+        if  ($verifparenthese == "("){
+            $conditions.")";
+        }
             dump($conditions);
         $requete=$this->createQueryBuilder('s')
            ->leftJoin('s.inscriptions','i')

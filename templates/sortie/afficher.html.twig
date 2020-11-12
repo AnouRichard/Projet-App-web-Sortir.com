@@ -48,7 +48,18 @@
                         {% dump(Leparticipant) %}
                         <div class="row mt-3">
                             <div class="col-4"><h4>Campus </h4></div>
-                            <div class="col-8"><input type="text" value="{{ Leparticipant.campus.nom}}"></div>
+                            <div class="col-8">
+                                {% for sortie in sorties %}
+                                    {% if sortie.inscriptions is defined  %}
+                                        {% for inscription in sortie.inscriptions %}
+                                            {% if inscription.Participant.id == sortie.organisateur  %}
+                                                <input type="text" value="{{ inscription.Participant.campus.nom}}">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
                         </div>
 
                         <div class="row mt-3">

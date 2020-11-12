@@ -36,12 +36,12 @@ class SortiesRepository extends ServiceEntityRepository
                     break;
                 case "entreDate":
                     if($value!=""){
-                        $conditions=$conditions." and s.dateDeDebut >= ".$value;
+                        $conditions=$conditions." and s.dateDeDebut >= '".$value."'";
                     }
                     break;
                 case "sortieDate":
                     if($value!=""){
-                        $conditions=$conditions." and s.dateCloture = '".$value."'";
+                        $conditions=$conditions." and s.dateCloture <= '".$value."'";
                     }
                     break;
                 case "camp":

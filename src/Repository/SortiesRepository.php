@@ -32,11 +32,11 @@ class SortiesRepository extends ServiceEntityRepository
             dump($key);
             switch ($key) {
                 case "nomSortie":
-                    $conditions=$conditions."s.nom like '%".$value."%'";
+                    $conditions=$conditions." and s.nom like '%".$value."%'";
                     break;
                 case "entreDate":
                     if($value!=""){
-                        $conditions=$conditions."s.dateDeDebut >= ".$value;
+                        $conditions=$conditions." and s.dateDeDebut >= ".$value;
                     }
                     break;
                 case "sortieDate":

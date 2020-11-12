@@ -27,6 +27,7 @@ class SortiesRepository extends ServiceEntityRepository
     {
 
         $verifor=" and";
+        $verifparenthese="";
         $conditions="";
         foreach ($parametres as $key=> $value){
             dump($key);
@@ -34,34 +35,67 @@ class SortiesRepository extends ServiceEntityRepository
                 case "nomSortie":
                     $conditions=$conditions." s.nom like '%".$value."%'";
                     break;
+
                 case "entreDate":
                     if($value!=""){
-                        $conditions=$conditions." and s.dateDeDebut >= '".$value."'";
+                        if($verifparenthese=="") {
+                            $verifparenthese = "(";
+                            $conditions = $conditions . " and ".$verifparenthese." s.dateDeDebut >= '" . $value . "'";
+                        }else{
+                            $conditions = $conditions . " and  s.dateDeDebut >= '" . $value . "'";
+                        }
                     }
                     break;
+
                 case "sortieDate":
                     if($value!=""){
-                        $conditions=$conditions." and s.dateCloture <= '".$value."'";
+                        if($verifparenthese=="") {
+                            $verifparenthese = "(";
+                            $conditions=$conditions." and ".$verifparenthese." s.dateCloture <= '".$value."'";
+                        }else{
+                            $conditions=$conditions." and s.dateCloture <= '".$value."'";
+                        }
                     }
                     break;
                 case "camp":
                     $conditions=$conditions."EXISTS(SELECT  t0 . id  AS  id_1 ,  t0 . pseudo  AS  pseudo_2 ,  t0 . nom  AS  nom_3 ,  t0 . prenom  AS  prenom_4 ,  t0 . téléphone  AS  telephone_5 ,  t0 . mail  AS  mail_6 ,  t0 . mot_de_passe  AS  mot_de_passe_7 ,  t0 . administrateur  AS  administrateur_8 ,  t0 .actif  AS  actif_9 ,  t0 . campus_id  AS  campus_id_10  FROM  participants  t0)";
                     break;
+
                 case "sortieOrga":
-                    $conditions=$conditions.$verifor." s.organisateur = ".$user->getId();
-                    $verifor=" or";
+                    if($verifparenthese=="") {
+                        $verifparenthese = "(";
+                        $conditions=$conditions.$verifor.$verifparenthese." s.organisateur = ".$user->getId();
+                        $verifor=" or";
+                    }else{
+                        $conditions=$conditions.$verifor." s.organisateur = ".$user->getId();
+                    }
                     break;
                 case "sortieinscrit":
-                    $conditions=$conditions.$verifor." p = ".$user->getId();
-                    $verifor=" or";
+                    if($verifparenthese=="") {
+                        $verifparenthese = "(";
+                        $conditions=$conditions.$verifor.$verifparenthese." p = ".$user->getId();
+                        $verifor=" or";
+                    }else{
+                        $conditions=$conditions.$verifor." p = ".$user->getId();
+                    }
                     break;
                 case "sortiePasInscrit":
-                    $conditions=$conditions.$verifor." p != ".$user->getId();
-                    $verifor=" or";
+                    if($verifparenthese=="") {
+                        $verifparenthese = "(";
+                        $conditions=$conditions.$verifor.$verifparenthese." p != ".$user->getId();
+                        $verifor=" or";
+                    }else{
+                        $conditions=$conditions.$verifor." p != ".$user->getId();
+                    }
                     break;
                 case "sortiepasse":
-                    $conditions=$conditions.$verifor." e = 'Ferme' ";
-                    $verifor=" or";
+                    if($verifparenthese=="") {
+                        $verifparenthese = "(";
+                        $conditions=$conditions.$verifor.$verifparenthese." e = 'Ferme' ";
+                        $verifor=" or";
+                    }else{
+                        $conditions=$conditions.$verifor." e = 'Ferme' ";
+                    }
                     break;
             }
         }

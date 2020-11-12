@@ -83,7 +83,7 @@
                                     {% for inscription in sorties.inscriptions %}
                                 <tr>
                                         <td>{{ inscription.Participant.pseudo }}</td>
-                                        <td>{{ inscription.Participant.nom }}</td>
+                                        <td>{{ inscription.Participant.prenom }} {{ inscription.Participant.nom }}</td>
                                 </tr>
                                     {% endfor %}
                                 {% endif %}

@@ -114,9 +114,9 @@
                                     <a href="">Modifier</a> - <a href="">publier</a>
                                 {% else %}
                                     {% if sortie.organisateur==user.id %}
-                                        <a href="/sorties/afficher/150"> Afficher</a> - <a href="">Annuler</a>
+                                        <a href=""> Afficher</a> - <a href="">Annuler</a>
                                     {% else %}
-                                        <a href="/sorties/afficher/{'id': 150}">Afficher</a>
+                                        <a href="/projet-app-web-sortir.com/public/sorties/afficher/150">Afficher</a>
                                     {% endif %}
                                 {% endif %}
                                 {% if presence==true and sortie.organisateur!=user.id  %}

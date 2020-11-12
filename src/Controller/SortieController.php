@@ -69,6 +69,32 @@ class SortieController extends AbstractController
         return $this->list($em,$user,$request);
     }
 
+    /**
+     * @Route("/sorties/desister/{id}", name="sortie_desister")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function desister(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        dump($id);
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+
+
+        $repo = $em->getRepository(Participants::class);
+        $participant= $repo->find($user->getId());
+        $repo = $em->getRepository(Inscriptions::class);
+        $inscription=$repo->findOneBy(array('Participant' => $participant,'sortie' => $Sorties));
+        $em->remove($inscription);
+        $em->flush();
+
+
+
+
+        return $this->list($em,$user,$request);
+    }
+
 
 
     /**

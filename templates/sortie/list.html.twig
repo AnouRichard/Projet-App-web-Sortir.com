@@ -111,19 +111,19 @@
                             </td>
                             <td>
                                 {% if sortie.etat.libelle=="En creation" and sortie.organisateur==user.id  %}
-                                    Modifier - publier
+                                    <a href="">Modifier</a> - <a href="">publier</a>
                                 {% else %}
                                     {% if sortie.organisateur==user.id %}
-                                        Afficher - Annuler
+                                        <a href=""> Afficher</a> - <a href="">Annuler</a>
                                     {% else %}
-                                        Afficher
+                                        <a href="">Afficher</a>
                                     {% endif %}
                                 {% endif %}
                                 {% if presence==true and sortie.organisateur!=user.id  %}
-                                    - se desister
+                                    - <a href="">se desister</a>
                                 {% endif %}
                                 {% if presence!=true and sortie.organisateur!=user.id and nbInscrit<sortie.nbInscriptionMax and sortie.etat.libelle=="ouvert" %}
-                                    - s'inscrire
+                                    - <a href="">s'inscrire</a>
                                 {% endif %}
                             </td>
 

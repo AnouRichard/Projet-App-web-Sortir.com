@@ -22,28 +22,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class SortieController extends AbstractController
 {
     /**
-     * @Route("/sorties", name="sortie_list")
-     */
-    public function list(EntityManagerInterface $em,UserInterface $user,Request $request)
-    {
-
-        $repo = $em->getRepository(Sorties::class);
-        $Sorties = $repo->findAll();
-
-        $repo = $em->getRepository(Participants::class);
-        $participants = $repo->findAll();
-
-        $repo = $em->getRepository(Campus::class);
-        $campus = $repo->findAll();
-        dump($request->request->all());
-        if (!empty($_POST)) {
-            $repo = $em->getRepository(Sorties::class);
-            $Sorties = $repo->findSorties($request->request->all(), $user);
-            dump($Sorties);
-        }
-
-    }
-    /**
      * @Route("/sorties/afficher/{id}", name="sortie_afficher")
      *   * requirements={"id": "\d+"},
      * methods={"GET"})
@@ -58,6 +36,33 @@ class SortieController extends AbstractController
         return $this->render("sortie/list.html.twig");
     }
 
+
+
+    /**
+     * @Route("/sorties", name="sortie_list")
+     */
+    public function list(EntityManagerInterface $em,UserInterface $user,Request $request)
+    {
+
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->findAll();
+
+        $repo = $em->getRepository(Participants::class);
+        $participants=$repo->findAll();
+
+        $repo = $em->getRepository(Campus::class);
+        $campus=$repo->findAll();
+        dump($request->request->all());
+        if(!empty($_POST)){
+            $repo = $em->getRepository(Sorties::class);
+            $Sorties=$repo->findSorties($request->request->all(),$user);
+            dump($Sorties);
+        }
+
+
+
+        return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus]);
+    }
     /**
      * @Route("/sorties/add", name="sortie_add")
      */

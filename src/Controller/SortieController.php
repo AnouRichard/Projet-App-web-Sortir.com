@@ -51,22 +51,22 @@ class SortieController extends AbstractController
 
         dump($id);
         dump(new \DateTime('now'));
-       /* $repo = $em->getRepository(Sorties::class);
+        $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->find($id);
         $inscription= new Inscriptions();
 
         $repo = $em->getRepository(Participants::class);
         $participant= $repo->find($user->getId());
-        $inscription->setDateInscription(CURRENT_DATE());
+        $inscription->setDateInscription(new \DateTime('now'));
         $inscription->setSortie($Sorties);
         $inscription->setParticipant($participant);
         $em->persist($inscription);
-        $em->flush();*/
+        $em->flush();
 
 
 
 
-        return $this->render("sortie/afficher.html.twig",["sorties" => $Sorties,"organisateur"=>$organisateur]);
+        return $this->list();
     }
 
 

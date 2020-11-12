@@ -66,7 +66,7 @@ class SortieController extends AbstractController
 
 
 
-        return $this->list();
+        return $this->list($em,$user,$request);
     }
 
 

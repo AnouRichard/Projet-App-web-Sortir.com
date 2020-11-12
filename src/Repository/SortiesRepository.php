@@ -32,7 +32,7 @@ class SortiesRepository extends ServiceEntityRepository
             dump($key);
             switch ($key) {
                 case "nomSortie":
-                    $conditions=$conditions." and s.nom like '%".$value."%'";
+                    $conditions=$conditions." s.nom like '%".$value."%'";
                     break;
                 case "entreDate":
                     if($value!=""){
@@ -41,7 +41,7 @@ class SortiesRepository extends ServiceEntityRepository
                     break;
                 case "sortieDate":
                     if($value!=""){
-                        $conditions=$conditions."s.dateCloture <= ".$value;
+                        $conditions=$conditions." and s.dateCloture <= ".$value;
                     }
                     break;
                 case "camp":

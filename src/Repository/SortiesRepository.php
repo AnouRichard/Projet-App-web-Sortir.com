@@ -100,7 +100,7 @@ class SortiesRepository extends ServiceEntityRepository
             }
         }
         if  ($verifparenthese == "("){
-            $conditions.")";
+            $conditions=$conditions.")";
         }
             dump($conditions);
         $requete=$this->createQueryBuilder('s')

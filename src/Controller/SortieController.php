@@ -33,12 +33,12 @@ class SortieController extends AbstractController
         $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->find($id);
         $repo = $em->getRepository(Participants::class);
-        $Participant= $repo->find($Sorties->getOrganisateur());
+        $organisateur= $repo->find($Sorties->getOrganisateur());
         dump($Sorties->getOrganisateur());
 
 
 
-        return $this->render("sortie/afficher.html.twig",["sorties" => $Sorties,"participants"=>$Participant]);
+        return $this->render("sortie/afficher.html.twig",["sorties" => $Sorties,"participants"=>$organisateur]);
     }
 
 

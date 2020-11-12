@@ -31,7 +31,7 @@ class SortiesRepository extends ServiceEntityRepository
         foreach ($parametres as $key=> $value){
             dump($key);
             switch ($key) {
-                case "nomSort":
+                case "nomSortie":
                     $conditions=$conditions."s.nom like '%".$value."%'";
                     break;
                 case "entreDate":

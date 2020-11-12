@@ -31,21 +31,33 @@ class SortieController extends AbstractController
         $Sorties = $repo->findAll();
 
         $repo = $em->getRepository(Participants::class);
-        $participants=$repo->findAll();
+        $participants = $repo->findAll();
 
         $repo = $em->getRepository(Campus::class);
-        $campus=$repo->findAll();
+        $campus = $repo->findAll();
         dump($request->request->all());
-        if(!empty($_POST)){
+        if (!empty($_POST)) {
             $repo = $em->getRepository(Sorties::class);
-            $Sorties=$repo->findSorties($request->request->all(),$user);
+            $Sorties = $repo->findSorties($request->request->all(), $user);
             dump($Sorties);
         }
 
-
-
-        return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus]);
     }
+    /**
+     * @Route("/sorties/afficher/{id}", name="sortie_afficher")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function afficher(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        dump($id);
+
+
+
+        return $this->render("sortie/list.html.twig");
+    }
+
     /**
      * @Route("/sorties/add", name="sortie_add")
      */

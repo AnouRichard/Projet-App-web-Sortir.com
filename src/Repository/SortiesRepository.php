@@ -40,7 +40,7 @@ class SortiesRepository extends ServiceEntityRepository
                 case "sortieDate":
                     $conditions=$conditions."s.dateCloture <= ".$value;
                     break;
-                case "campus":
+                case "camp":
                     $conditions=$conditions."EXISTS(SELECT  t0 . id  AS  id_1 ,  t0 . pseudo  AS  pseudo_2 ,  t0 . nom  AS  nom_3 ,  t0 . prenom  AS  prenom_4 ,  t0 . téléphone  AS  telephone_5 ,  t0 . mail  AS  mail_6 ,  t0 . mot_de_passe  AS  mot_de_passe_7 ,  t0 . administrateur  AS  administrateur_8 ,  t0 .actif  AS  actif_9 ,  t0 . campus_id  AS  campus_id_10  FROM  participants  t0)";
                     break;
                 case "sortieOrga":

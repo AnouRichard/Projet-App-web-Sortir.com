@@ -111,19 +111,19 @@
                             </td>
                             <td>
                                 {% if sortie.etat.libelle=="En creation" and sortie.organisateur==user.id  %}
-                                    <a href="">Modifier</a> - <a href="">publier</a>
+                                    <a href="/projet-app-web-sortir.com/public/sorties/afficher/{{ sortie.id }}">Modifier</a> - <a href="">publier</a>
                                 {% else %}
                                     {% if sortie.organisateur==user.id %}
-                                        <a href=""> Afficher</a> - <a href="">Annuler</a>
+                                        <a href="/projet-app-web-sortir.com/public/sorties/afficher/{{ sortie.id }}"> Afficher</a> - <a href="">Annuler</a>
                                     {% else %}
                                         <a href="/projet-app-web-sortir.com/public/sorties/afficher/{{ sortie.id }}">Afficher</a>
                                     {% endif %}
                                 {% endif %}
                                 {% if presence==true and sortie.organisateur!=user.id  %}
-                                    - <a href="">se desister</a>
+                                    - <a href="/projet-app-web-sortir.com/public/sorties/desister/{{ sortie.id }}">se desister</a>
                                 {% endif %}
                                 {% if presence!=true and sortie.organisateur!=user.id and nbInscrit<sortie.nbInscriptionMax and sortie.etat.libelle=="ouvert" %}
-                                    - <a href="">s'inscrire</a>
+                                    - <a href="/projet-app-web-sortir.com/public/sorties/incription/{{ sortie.id }}">s'inscrire</a>
                                 {% endif %}
                             </td>
 

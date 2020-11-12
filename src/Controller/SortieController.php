@@ -50,7 +50,7 @@ class SortieController extends AbstractController
     {
 
         dump($id);
-        dump(CURRENT_DATE());
+        dump(new \DateTime('now'));
        /* $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->find($id);
         $inscription= new Inscriptions();

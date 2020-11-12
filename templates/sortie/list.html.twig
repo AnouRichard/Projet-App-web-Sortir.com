@@ -116,7 +116,7 @@
                                     {% if sortie.organisateur==user.id %}
                                         <a href="/sorties/afficher/150"> Afficher</a> - <a href="">Annuler</a>
                                     {% else %}
-                                        <a href="/sorties/afficher/id:150">Afficher</a>
+                                        <a href="/sorties/afficher/{'id': 150}">Afficher</a>
                                     {% endif %}
                                 {% endif %}
                                 {% if presence==true and sortie.organisateur!=user.id  %}

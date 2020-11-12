@@ -29,17 +29,17 @@ class SortieController extends AbstractController
 
         $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->findAll();
-        if(!empty($_POST)){
 
-        $lesSortie=$repo->findSorties($request->request->all(),$user);
-            dump($lesSortie);}
         $repo = $em->getRepository(Participants::class);
         $participants=$repo->findAll();
-        $repo = $em->getRepository(Inscriptions::class);
-        $inscirption=$repo->findAll();
+
         $repo = $em->getRepository(Campus::class);
         $campus=$repo->findAll();
         dump($request->request->all());
+        if(!empty($_POST)){
+            $Sorties=$repo->findSorties($request->request->all(),$user);
+            dump($Sorties);
+        }
 
 
 

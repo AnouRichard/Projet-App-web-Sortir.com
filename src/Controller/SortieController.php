@@ -41,6 +41,34 @@ class SortieController extends AbstractController
         return $this->render("sortie/afficher.html.twig",["sorties" => $Sorties,"organisateur"=>$organisateur]);
     }
 
+    /**
+     * @Route("/sorties/inscription/{id}", name="sortie_inscription")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function inscription(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        dump($id);
+        dump(CURRENT_DATE());
+       /* $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+        $inscription= new Inscriptions();
+
+        $repo = $em->getRepository(Participants::class);
+        $participant= $repo->find($user->getId());
+        $inscription->setDateInscription(CURRENT_DATE());
+        $inscription->setSortie($Sorties);
+        $inscription->setParticipant($participant);
+        $em->persist($inscription);
+        $em->flush();*/
+
+
+
+
+        return $this->render("sortie/afficher.html.twig",["sorties" => $Sorties,"organisateur"=>$organisateur]);
+    }
+
 
 
     /**

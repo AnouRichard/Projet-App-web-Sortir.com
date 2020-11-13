@@ -114,7 +114,7 @@
                                     <a href="/projet-app-web-sortir.com/public/sorties/modifier/{{ sortie.id }}">Modifier</a> - <a href="/projet-app-web-sortir.com/public/sorties/publier/{{ sortie.id }}">publier</a>
                                 {% else %}
                                     {% if sortie.organisateur==user.id %}
-                                        <a href="/projet-app-web-sortir.com/public/sorties/afficher/{{ sortie.id }}"> Afficher</a> - <a href="">Annuler</a>
+                                        <a href="/projet-app-web-sortir.com/public/sorties/afficher/{{ sortie.id }}"> Afficher</a> - <a href="/projet-app-web-sortir.com/public/sorties/annuler/{{ sortie.id }}">Annuler</a>
                                     {% else %}
                                         <a href="/projet-app-web-sortir.com/public/sorties/afficher/{{ sortie.id }}">Afficher</a>
                                     {% endif %}

@@ -84,7 +84,7 @@
                                 {% if sorties.inscriptions is defined  %}
                                     {% for inscription in sorties.inscriptions %}
                                 <tr>
-                                    <td><a href="/projet-app-web-sortir.com/public/profil/{{ inscription.Participant..id}}">{{ inscription.Participant.pseudo }}</a></td>
+                                    <td><a href="/projet-app-web-sortir.com/public/profil/{{ inscription.Participant.id}}">{{ inscription.Participant.pseudo }}</a></td>
                                         <td>{{ inscription.Participant.prenom }} {{ inscription.Participant.nom }}</td>
                                 </tr>
                                     {% endfor %}

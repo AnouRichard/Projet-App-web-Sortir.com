@@ -120,6 +120,34 @@ class SortieController extends AbstractController
     }
 
     /**
+     * @Route("/sorties/modifier/{id}", name="sortie_modifier")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function modifier(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+
+        $repo = $em->getRepository(Participants::class);
+        $participants=$repo->findAll();
+
+        $repo = $em->getRepository(Campus::class);
+        $campus=$repo->findAll();
+        dump($request->request->all());
+        if(!empty($_POST)){
+            $repo = $em->getRepository(Sorties::class);
+            $Sorties=$repo->findSorties($request->request->all(),$user);
+            dump($Sorties);
+        }
+
+
+
+        return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus]);
+    }
+
+    /**
      * @Route("/sorties/annuler/{id}", name="sortie_annuler")
      *   * requirements={"id": "\d+"},
      * methods={"GET"})

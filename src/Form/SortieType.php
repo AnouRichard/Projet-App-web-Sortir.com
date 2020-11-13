@@ -21,7 +21,7 @@ class SortieType extends AbstractType
     {
         $builder
             ->add('nom',TextType::class,[
-               'attr'=>['class'=>'form-control','value'=>'test' ],
+               'attr'=>['class'=>'form-control' ],
                 'label'=>'Nom'
             ])
             ->add('dateDeDebut',DateTimeType::class,[

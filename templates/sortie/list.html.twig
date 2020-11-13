@@ -8,21 +8,15 @@
     <div class="row justify-content-center ">
         <div class="col-12">
             <div class="row justify-content-center">
-               <div class="col-12" >
+               <div class="col-5" >
                    <div class="row">
-                       <div class="col-6">
+                       <div class="col-12">
                            <label for="campus">Campus</label>
                            <select id="campus" name="campus" class="form-control form-control-lg">
                                {% for uncampus in campus %}
                                    <option value="{{ uncampus.id|e }}">{{ uncampus.nomcampus|e }}</option>
                                {% endfor %}
                            </select>
-                       </div>
-                       <div class="col-5" >
-                           <div class="row">
-                               <input type="checkbox" name="sortieOrga" class="form-control form-control-lg" id="sortieOrga" class="">
-                               <label for="sortieOrga">Sorties dont je suis L'organisateur/trice</label>
-                           </div>
                        </div>
                    </div>
                    <div class="row">

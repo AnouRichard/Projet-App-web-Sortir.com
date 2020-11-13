@@ -120,6 +120,26 @@ class SortieController extends AbstractController
     }
 
     /**
+     * @Route("/sorties/verifmodifier/{id}", name="sortie_verifmodifier")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function verifmodifier(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+
+
+
+            dump($request->request->all());
+
+
+
+
+
+        return $this->render("sortie/modifier.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus,"organisateur"=>$organisateur,"villes"=>$ville]);
+    }
+
+    /**
      * @Route("/sorties/modifier/{id}", name="sortie_modifier")
      *   * requirements={"id": "\d+"},
      * methods={"GET"})

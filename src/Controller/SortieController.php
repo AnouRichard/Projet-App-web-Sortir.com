@@ -141,9 +141,7 @@ class SortieController extends AbstractController
 
         if(!empty($_POST)){
             dump($request->request->all());
-            $repo = $em->getRepository(Sorties::class);
-            $Sorties=$repo->findSorties($request->request->all(),$user);
-            dump($Sorties);
+
         }
 
 

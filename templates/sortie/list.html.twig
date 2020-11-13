@@ -1,9 +1,7 @@
 {% extends 'layout.html.twig' %}
 {% block main %}
 
-        {% for inscription in sorties[0].inscriptions %}
-            {{ dump(inscription.Participant.nom) }}
-        {% endfor %}
+
 <form action="/projet-app-web-sortir.com/public/sorties" method="post" class="form-example">
     <div class="row justify-content-center ">
         <div class="col-12">

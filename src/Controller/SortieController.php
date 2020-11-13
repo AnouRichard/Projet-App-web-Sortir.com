@@ -104,10 +104,12 @@ class SortieController extends AbstractController
         dump($id);
         $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->find($id);
-
+        dump($Sorties);
         $repo = $em->getRepository(Etats::class);
         $etat=$repo->findOneBy(array('libelle' => "ouvert"));
+        dump($etat);
         $Sorties->setEtat($etat);
+        dump($Sorties);
         $em->remove($Sorties);
         $em->flush();
 

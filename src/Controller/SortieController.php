@@ -110,8 +110,8 @@ class SortieController extends AbstractController
         dump($etat);
         $Sorties->setEtat($etat);
         dump($Sorties);
-        $em->remove($Sorties);
-        $em->flush();
+        //$em->remove($Sorties);
+       // $em->flush();
 
 
 

@@ -1,6 +1,10 @@
 {% extends 'layout.html.twig' %}
 {% block main %}
-    {{dump(sorties)  }}
+
+        {% for inscription in sorties[0].inscriptions %}
+            {{ dump(inscription.Participant.nom) }}
+        {% endfor %}
+<form action="/projet-app-web-sortir.com/public/sorties" method="post" class="form-example">
     <div class="row justify-content-center ">
         <div class="col-12">
             <div class="row justify-content-center">
@@ -8,42 +12,45 @@
                    <div class="row">
                        <div class="col-12">
                            <label for="campus">Campus</label>
-                           <select id="campus" class="form-control form-control-lg">
+                           <select id="campus" name="campus" class="form-control form-control-lg">
+                               {% for uncampus in campus %}
+                                   <option value="{{ uncampus.id|e }}">{{ uncampus.nomcampus|e }}</option>
+                               {% endfor %}
                            </select>
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-12">
                            <label for="nomSortie">Le nom de la sortie contient</label>
-                           <input type="text" class="form-control form-control-lg" id="nomSortie">
+                           <input type="text" name="nomSortie" class="form-control form-control-lg" id="nomSortie">
                        </div>
                    </div>
                    <div class="row">
                         <div class="col-6">
                             <label for="entreDate">Entre</label>
-                            <input type="date" id="entreDate" name="trip-start" class="form-control form-control-lg">
+                            <input type="date" id="entreDate" name="entreDate" class="form-control form-control-lg">
                         </div>
                        <div class="col-6">
                            <label for="sortieDate">et</label>
-                           <input type="date" id="sortieDate" name="trip-start" class="form-control form-control-lg">
+                           <input type="date" id="sortieDate" name="sortieDate" class="form-control form-control-lg">
                        </div>
                    </div>
                </div>
                 <div class="col-5" >
                     <div class="row">
-                        <input type="checkbox" id="sortieOrga" class="">
+                        <input type="checkbox" name="sortieOrga" id="sortieOrga" class="">
                         <label for="sortieOrga">Sorties dont je suis L'organisateur/trice</label>
                     </div>
                     <div class="row">
-                        <input type="checkbox" id="sortieinscrit" class="">
+                        <input type="checkbox" id="sortieinscrit" name="sortieinscrit" class="">
                         <label for="sortieinscrit">Sorties auxquelles je suis inscrit/e</label>
                     </div>
                     <div class="row">
-                        <input type="checkbox" id="sortiePasInscrit" class="" >
+                        <input type="checkbox" id="sortiePasInscrit" name="sortiePasInscrit" class="" >
                         <label for="sortiePasInscrit">Sorties auxquelles je ne suis pas inscrit/e</label>
                     </div>
                     <div class="row">
-                        <input type="checkbox" id="sortiepasse"  class="">
+                        <input type="checkbox" id="sortiepasse" name="sortiepasse"  class="">
                         <label for="sortiepasse">Sorties passées</label>
                     </div>
                 </div>
@@ -51,6 +58,9 @@
                     <button class="btn btn-lg btn-secondary" type="submit">recherche</button>
                 </div>
             </div>
+        </div>
+    </div>
+</form>
             <div class="row mt-5">
                 <div class="col-12">
                     <table class="table table-striped">
@@ -69,16 +79,53 @@
                         <tbody>
                         {% for sortie in sorties %}
                         <tr>
-
+                            {% set presence=false  %}
                             <td>{{ sortie.nom|e }}</td>
                             <td>{{ sortie.dateDeDebut|date("m/d/Y") }}</td>
                             <td>{{ sortie.dateCloture|date("m/d/Y") }}</td>
-                            <td>place</td>
+                            <td>
+                                {% if sortie.inscriptions is defined  %}
+                                    {% set nbInscrit = sortie.inscriptions|length %}
+                                        {{ sortie.inscriptions|length}}/{{ sortie.nbInscriptionMax}}
+                                {% endif %}
+                            </td>
                             <td>
                                 {% if sortie.etat.libelle is defined  %}{{ sortie.etat.libelle}}{% endif %}</td>
-                            <td>inscrit</td>
-                            <td>organisateur</td>
-                            <td></td>
+                            <td>
+                                {% if sortie.inscriptions is defined  %}
+                                    {% for inscription in sortie.inscriptions %}
+                                        {% if inscription.Participant.id==user.id  %}
+                                            {% set presence = true %}
+                                            X
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                {% for participant in participants %}
+                                    {% if participant.id==sortie.organisateur  %}
+                                        {{ participant.nom }}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if sortie.etat.libelle=="En creation" and sortie.organisateur==user.id  %}
+                                    <a href="/projet-app-web-sortir.com/public/sorties/modifier/{{ sortie.id }}">Modifier</a> - <a href="/projet-app-web-sortir.com/public/sorties/publier/{{ sortie.id }}">publier</a>
+                                {% else %}
+                                    {% if sortie.organisateur==user.id %}
+                                        <a href="/projet-app-web-sortir.com/public/sorties/afficher/{{ sortie.id }}"> Afficher</a> - <a href="/projet-app-web-sortir.com/public/sorties/annuler/{{ sortie.id }}">Annuler</a>
+                                    {% else %}
+                                        <a href="/projet-app-web-sortir.com/public/sorties/afficher/{{ sortie.id }}">Afficher</a>
+                                    {% endif %}
+                                {% endif %}
+                                {% if presence==true and sortie.organisateur!=user.id  %}
+                                    - <a href="/projet-app-web-sortir.com/public/sorties/desister/{{ sortie.id }}">se desister</a>
+                                {% endif %}
+                                {% if presence!=true and sortie.organisateur!=user.id and nbInscrit<sortie.nbInscriptionMax and sortie.etat.libelle=="ouvert" %}
+                                    - <a href="/projet-app-web-sortir.com/public/sorties/inscription/{{ sortie.id }}">s'inscrire</a>
+                                {% endif %}
+                            </td>
 
                         </tr>
                         {% endfor %}

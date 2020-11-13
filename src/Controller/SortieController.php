@@ -2,8 +2,11 @@
 namespace App\Controller;
 
 
+use App\Entity\Campus;
 use App\Entity\Etats;
+use App\Entity\Inscriptions;
 use App\Entity\Lieux;
+use App\Entity\Participants;
 use App\Entity\Sorties;
 use App\Entity\Ville;
 use App\Form\CreateSortieType;
@@ -19,14 +22,186 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class SortieController extends AbstractController
 {
     /**
+     * @Route("/sorties/afficher/{id}", name="sortie_afficher")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function afficher(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        dump($id);
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+        $repo = $em->getRepository(Participants::class);
+        $organisateur= $repo->find($Sorties->getOrganisateur());
+        dump($Sorties->getOrganisateur());
+
+
+
+        return $this->render("sortie/afficher.html.twig",["sorties" => $Sorties,"organisateur"=>$organisateur]);
+    }
+
+    /**
+     * @Route("/sorties/inscription/{id}", name="sortie_inscription")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function inscription(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        dump($id);
+        dump(new \DateTime('now'));
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+        $inscription= new Inscriptions();
+
+        $repo = $em->getRepository(Participants::class);
+        $participant= $repo->find($user->getId());
+        $inscription->setDateInscription(new \DateTime('now'));
+        $inscription->setSortie($Sorties);
+        $inscription->setParticipant($participant);
+        $em->persist($inscription);
+        $em->flush();
+
+
+
+
+        return $this->list($em,$user,$request);
+    }
+
+    /**
+     * @Route("/sorties/desister/{id}", name="sortie_desister")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function desister(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        dump($id);
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+        $repo = $em->getRepository(Participants::class);
+        $participant= $repo->find($user->getId());
+        $repo = $em->getRepository(Inscriptions::class);
+        $inscription=$repo->findOneBy(array('Participant' => $participant,'sortie' => $Sorties));
+        $em->remove($inscription);
+        $em->flush();
+
+
+
+
+        return $this->list($em,$user,$request);
+    }
+
+    /**
+     * @Route("/sorties/publier/{id}", name="sortie_publier")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function publier(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        dump($id);
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+        dump($Sorties);
+        $repo = $em->getRepository(Etats::class);
+        $etat=$repo->findOneBy(array('libelle' => "ouvert"));
+        dump($etat);
+        $Sorties->setEtat($etat);
+        dump($Sorties);
+        $em->persist($Sorties);
+       $em->flush();
+
+
+
+
+        return $this->list($em,$user,$request);
+    }
+
+    /**
+     * @Route("/sorties/modifier/{id}", name="sortie_modifier")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function modifier(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+
+        $repo = $em->getRepository(Participants::class);
+        $participants=$repo->findAll();
+        $repo = $em->getRepository(Participants::class);
+        $organisateur= $repo->find($Sorties->getOrganisateur());
+        $repo = $em->getRepository(Campus::class);
+        $campus=$repo->findAll();
+        dump($request->request->all());
+        if(!empty($_POST)){
+            $repo = $em->getRepository(Sorties::class);
+            $Sorties=$repo->findSorties($request->request->all(),$user);
+            dump($Sorties);
+        }
+
+
+
+        return $this->render("sortie/modifier.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus,"organisateur"=>$organisateur]);
+    }
+
+    /**
+     * @Route("/sorties/annuler/{id}", name="sortie_annuler")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function annuler(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        dump($id);
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+        dump($Sorties);
+        $repo = $em->getRepository(Inscriptions::class);
+        $inscriptions=$repo->findBy(array('sortie' => $Sorties));
+        dump($inscriptions);
+        foreach ($inscriptions as $inscription) {
+            $em->remove($inscription);
+        }
+
+        $em->remove($Sorties);
+        $em->flush();
+
+
+
+
+        return $this->list($em,$user,$request);
+    }
+
+
+
+    /**
      * @Route("/sorties", name="sortie_list")
      */
-    public function list(EntityManagerInterface $em,UserInterface $user)
+    public function list(EntityManagerInterface $em,UserInterface $user,Request $request)
     {
-        dump($user);
+
         $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->findAll();
-        return $this->render("sortie/list.html.twig",["sorties" => $Sorties]);
+
+        $repo = $em->getRepository(Participants::class);
+        $participants=$repo->findAll();
+
+        $repo = $em->getRepository(Campus::class);
+        $campus=$repo->findAll();
+        dump($request->request->all());
+        if(!empty($_POST)){
+            $repo = $em->getRepository(Sorties::class);
+            $Sorties=$repo->findSorties($request->request->all(),$user);
+            dump($Sorties);
+        }
+
+
+
+        return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus]);
     }
     /**
      * @Route("/sorties/add", name="sortie_add")

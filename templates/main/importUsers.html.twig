@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Home {% endblock %}
+
+{% block main %}
+
+    <div class="row justify-content-center mt-5">
+        <div>
+            {{ form_start(userForm) }}
+
+            <div class="form-group">
+                {{ form_label(userForm.fichier) }}
+                {{ form_widget(userForm.fichier) }}
+                {{ form_errors(userForm.fichier) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(userForm.send, {'label': "Importer", 'attr' : { 'class': 'btn btn-lg btn-secondary m-2' }}) }}
+            </div>
+
+            {{ form_end(userForm) }}
+        </div>
+
+    </div>
+
+{% endblock %}

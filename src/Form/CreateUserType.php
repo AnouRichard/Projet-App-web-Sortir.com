@@ -35,8 +35,8 @@ class CreateUserType extends AbstractType
             ])
 
             ->add('campus', EntityType::class,[
-            'class'  => Campus::class , "choice_label"=>'nom_campus'
-        ])
+                'class'  => Campus::class , "choice_label"=>'nom_campus'
+            ])
             ->add('photo', FileType::class, [
                 'label' => 'Choisir une image',
                 'mapped' => false,

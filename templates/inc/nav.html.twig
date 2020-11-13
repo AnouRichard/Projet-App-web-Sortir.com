@@ -4,9 +4,9 @@
         <a href="{{ path('accueil') }}">Villes</a>
         <a href="{{ path('accueil') }}">Campus</a>
         <a href="{{ path('profil', {id:app.user.id}) }}">Mon Profil</a>
-        <a href="{{ path('logout') }}">Se déconnecter</a>
         {% if app.user.administrateur %}
-            <a href="{{ path('add_user') }}">Ajouter un utilisateur</a>
+            <a href="{{ path('add_user') }}">Ajouter utilisateur</a>
         {% endif %}
+        <a href="{{ path('logout') }}">Se déconnecter</a>
     </ul>
 </nav>

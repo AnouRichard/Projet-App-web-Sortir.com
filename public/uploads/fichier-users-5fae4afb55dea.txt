@@ -1,0 +1,3 @@
+pseudo;nom;prenom;telephone ;mail;motDePasse;administateur;actif;campus ;photo;inscription
+Dede;Dede;Dede;102030405;dede@mail.fr;dede;0;0;1;;
+Bibi;Bibi;Bibi;0;bibi@mail.fr;bibi;0;0;2;;

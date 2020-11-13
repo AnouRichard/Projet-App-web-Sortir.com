@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     file_directory: '%kernel.project_dir%/public/files'
+    upload_directory: '%kernel.project_dir%/public/uploads'
 
 services:
     # default configuration for services in *this* file
@@ -33,3 +34,7 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%file_directory%'
+
+    App\Service\CSVFileUploader:
+        arguments:
+            $targetDirectory: '%upload_directory%'

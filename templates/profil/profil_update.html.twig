@@ -5,18 +5,18 @@
 
 
 {% block main %}
-<div class="row justify-content-center">
-{% include ('inc/nav.html.twig') %}
-</div>
+        <div class="row justify-content-center">
+                {% include ('inc/nav.html.twig') %}
+        </div>
 
-<div class="row justify-content-center">
+        <div class="row justify-content-center">
         <div class="col-12">
-                <div class="row justify-content-center col-12">
-                        <h2>Modifier mon Profil</h2>
-                </div>
-                <div class="row mt-3">
-                        <div class="col-6">
-                        <div>
+        <div class="row justify-content-center col-12">
+                <h2>Modifier mon Profil</h2>
+        </div>
+        <div class="row mt-3">
+        <div class="col-10">
+                <div>
                         {{ form_start(userForm) }}
                         <div class="col-112">
                                 <div class="row mt-3">
@@ -40,10 +40,6 @@
                                         <div class="col-8">{{ form_widget(userForm.telephone) }}</div>
                                 </div>
                                 <div class="row mt-3">
-                                        <div class="col-4"><h4> {{ form_label(userForm.motDePasse) }}</h4></div>
-                                        <div class="col-8">{{ form_widget(userForm.motDePasse) }}</div>
-                                </div>
-                                <div class="row mt-3">
                                         <div class="col-4"><h4> {{ form_label(userForm.campus) }}</h4></div>
                                         <div class="col-8">{{ form_widget(userForm.campus) }}</div>
                                 </div>
@@ -51,9 +47,11 @@
                                         <div class="col-4"><h4> {{ form_label(userForm.photo) }}</h4></div>
                                         <div class="col-8">{{ form_widget(userForm.photo) }}</div>
                                 </div>
+
                         </div>
                 </div>
                 <div class="row justify-content-center mt-5">
+
                         <div>
                                 <button class="btn btn-lg btn-secondary m-2"  type="submit">Enregistrer</button>
                                 <input type="hidden" name="_target_path" value="profil"/>
@@ -63,12 +61,13 @@
                                         <a href="{{ path('profil', {id:app.user.id}) }}" >Annuler</a>
                                 </button>
                         </div>
+
                         <div>
 
                                 {{ form_end(userForm) }}
                         </div>
+                </div>
         </div>
-</div>
 
 
 

@@ -35,7 +35,6 @@
                 <div class="col-4"><h4> {{ form_label(userForm.campus) }}</h4></div>
                 <div class="col-8">{{ form_widget(userForm.campus) }}</div>
             </div>
-
             <div class="row mt-3">
                 <div class="col-4"><h4> {{ form_label(userForm.actif) }}</h4></div>
                 <div class="col-8">{{ form_widget(userForm.actif) }}</div>
@@ -44,25 +43,21 @@
                 <div class="col-4"><h4> {{ form_label(userForm.administrateur) }}</h4></div>
                 <div class="col-8">{{ form_widget(userForm.administrateur) }}</div>
             </div>
-
-            <div class="row mt-3">
-                <div class="col-4"><h4> {{ form_label(userForm.photo) }}</h4></div>
-                <div class="col-8">{{ form_widget(userForm.photo) }}</div>
-            </div>
         </div>
+        {{ form_end(userForm) }}
     </div>
+
+  <!--  <div class="row justify-content-center mt-5">
+            <div><h4> <a href="{{ path('importUsers') }}">Importer des utilisateurs</a></h4></div>
+    </div> -->
     <div class="row justify-content-center mt-5">
         <div>
-             <button class="btn btn-lg btn-secondary m-2"  type="submit">Enregistrer</button>
-             <input type="hidden" name="_target_path" value="login"/>
+            <button class="btn btn-lg btn-secondary m-2"  type="submit">Enregistrer</button>
+            <input type="hidden" name="_target_path" value="login"/>
         </div>
-             <button class="btn btn-lg btn-secondary m-2"  type="reset">
-                 <a href="{{ path('login') }}" >Annuler</a>
-             </button>
-
-        {{ form_end(userForm) }}
-
+        <button class="btn btn-lg btn-secondary m-2"  type="reset">
+            <a href="{{ path('accueil') }}" >Annuler</a>
+        </button>
     </div>
-
 
 {% endblock %}

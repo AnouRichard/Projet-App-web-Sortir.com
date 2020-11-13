@@ -12,12 +12,12 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="row justify-content-center col-12">
-                    <h1>{{partcicipant.pseudo}}</h1>
+                <h1>{{partcicipant.pseudo}}</h1>
             </div>
             <div class="row mt-3">
                 <div class="col-6">
                     {% if app.user.photo is not null %}
-                    <img src="{{ asset('files/' ~ app.user.photo) }}" alt="{{ app.user.username }}">
+                        <img src="{{ asset('files/' ~ app.user.photo) }}" alt="{{ app.user.username }}">
                     {% endif %}
                 </div>
                 <div class="col-6">
@@ -41,6 +41,15 @@
                         <div class="col-4"><h4>Campus : </h4></div>
                         <div class="col-8">{{partcicipant.campus.getNomCampus()}}</div>
                     </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-5">
+
+                <div>
+                    <div class="row mt-3">
+                        <h4> <a href="{{ path('mdpUpdate', {id:app.user.id})}}">Modifier mot de passe ?</a></h4>
+                    </div>
+
                 </div>
             </div>
             <div class="row justify-content-center mt-5">

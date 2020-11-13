@@ -124,6 +124,7 @@ class SortieController extends AbstractController
      */
     public function verifmodifier(EntityManagerInterface $em,UserInterface $user,Request $request)
     {
+        dump($request->request->all());
         $repo = $em->getRepository(Sorties::class);
         $Sorties = $repo->find($request->request->get("id"));
         $Sorties->setNom($request->request->get("nom"));
@@ -134,12 +135,12 @@ class SortieController extends AbstractController
         $Sorties->setDescriptionInfos($request->request->get("description"));
         $repo = $em->getRepository(Lieux::class);
         $lieu = $repo->find($request->request->get("lieu"));
-        $Sorties->setLieu($request->request->get($lieu));
+        $Sorties->setLieu($lieu);
         $em->persist($Sorties);
         $em->flush();
 
 
-            dump($request->request->all());
+
 
 
 

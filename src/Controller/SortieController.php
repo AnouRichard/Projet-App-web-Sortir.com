@@ -120,9 +120,7 @@ class SortieController extends AbstractController
     }
 
     /**
-     * @Route("/sorties/verifmodifier/{id}", name="sortie_verifmodifier")
-     *   * requirements={"id": "\d+"},
-     * methods={"GET"})
+     * @Route("/sorties/verifmodifier", name="sortie_verifmodifier")
      */
     public function verifmodifier(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
     {

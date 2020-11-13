@@ -144,7 +144,7 @@ class SortieController extends AbstractController
 
 
 
-        return $this->render("sortie/list.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus]);
+        return $this->render("sortie/modifier.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus]);
     }
 
     /**

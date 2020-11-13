@@ -136,6 +136,8 @@ class SortieController extends AbstractController
         $organisateur= $repo->find($Sorties->getOrganisateur());
         $repo = $em->getRepository(Campus::class);
         $campus=$repo->findAll();
+        $repo = $em->getRepository(Ville::class);
+        $ville = $repo->findAll();
         dump($request->request->all());
         if(!empty($_POST)){
             $repo = $em->getRepository(Sorties::class);
@@ -145,7 +147,7 @@ class SortieController extends AbstractController
 
 
 
-        return $this->render("sortie/modifier.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus,"organisateur"=>$organisateur]);
+        return $this->render("sortie/modifier.html.twig",["sorties" => $Sorties,"participants"=>$participants,"user"=>$user,"campus"=>$campus,"organisateur"=>$organisateur,"ville"=>$ville]);
     }
 
     /**

@@ -1,6 +1,55 @@
 {% extends 'layout.html.twig' %}
 
     {% block main %}
+        <script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script language = "javascript">
+            $(document).ready(function() {
+                $('#ville').change(function () {
+                    var idVille = $(this).val();
+                    $('#rue').val("");
+                    $('#codepostal').val("");
+                    $('#latitude').val("");
+                    $('#longitude').val("");
+                    $.ajax({
+                        url:        '/projet-app-web-sortir.com/public/sorties/add/getLieux',
+                        type:       'POST',
+                        dataType:   'json',
+                        async:      true,
+                        data:{idVille:idVille},
+
+
+                        success: function(data, status) {
+                            console.log(data);
+                            // $('#lieu').setAttribute('value','test');
+
+                            $('#lieu option'). remove()
+                            $.each(data, function( index, value ) {
+                                $('#lieu').append($('<option>', {
+                                    value: data[index]['id'],
+                                    text: data[index]['nom']
+                                }));
+                            });
+
+
+                            var idlieu = $('#lieu').val();
+                            $('#rue').val( data[idlieu]['rue']);
+                            $('#codepostal').val(data[idlieu]['codepostal']);
+                            $('#latitude').val(data[idlieu]['latitude']);
+                            $('#longitude').val(data[idlieu]['longitude']);
+
+                            $('#lieu').change(function () {
+                                var idlieu = $('#lieu').val();
+                                $('#rue').val( data[idlieu]['rue']);
+                                $('#codepostal').val(data[idlieu]['codepostal']);
+                                $('#latitude').val(data[idlieu]['latitude']);
+                                $('#longitude').val(data[idlieu]['longitude']);
+
+                            });
+                        }
+                    });
+                });
+            })
+        </script>
         <form action="/projet-app-web-sortir.com/public/modifier" method="post" class="form-example">
         <div class="row justify-content-center">
             <div class="col-12">
@@ -46,7 +95,9 @@
                             <div class="col-8">
                                 <select name="ville" class="form-control" id="ville">
                                     <option value=""></option>
-
+                                    {% for ville in villes %}
+                                        <option value="{{ ville.id|e }}">{{ ville.nom|e }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>

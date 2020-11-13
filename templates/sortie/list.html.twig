@@ -107,7 +107,7 @@
                             <td>
                                 {% for participant in participants %}
                                     {% if participant.id==sortie.organisateur  %}
-                                        <a href="">{{ participant.nom }}</a>
+                                        <a href="/projet-app-web-sortir.com/public//profil/{{ participant.id}}">{{ participant.nom }}</a>
                                     {% endif %}
                                 {% endfor %}
                             </td>

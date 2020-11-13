@@ -60,7 +60,7 @@ class UserProfileController extends AbstractController
 
                 $this->addFlash("success", "Votre profil a été mis à jour");
 
-                return $this->redirectToRoute("accueil");
+                return $this->redirectToRoute("sortie_list");
             }
         }
         return $this->render("profil/profil_update.html.twig", [
@@ -110,7 +110,7 @@ class UserProfileController extends AbstractController
 
             $this->addFlash("success", "Votre mot de passe  a été mis à jour");
 
-            return $this->redirectToRoute("accueil");
+            return $this->redirectToRoute("sortie_list");
 
         }
         return $this->render("profil/update_mdp.html.twig", [

@@ -93,6 +93,30 @@ class SortieController extends AbstractController
         return $this->list($em,$user,$request);
     }
 
+    /**
+     * @Route("/sorties/publier/{id}", name="sortie_publier")
+     *   * requirements={"id": "\d+"},
+     * methods={"GET"})
+     */
+    public function publier(EntityManagerInterface $em,$id,UserInterface $user,Request $request)
+    {
+
+        dump($id);
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($id);
+
+        $repo = $em->getRepository(Etats::class);
+        $etat=$repo->findOneBy(array('libelle' => "ouvert"));
+        $Sorties->setEtat($etat);
+        $em->remove($Sorties);
+        $em->flush();
+
+
+
+
+        return $this->list($em,$user,$request);
+    }
+
 
 
     /**

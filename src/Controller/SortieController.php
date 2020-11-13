@@ -124,8 +124,19 @@ class SortieController extends AbstractController
      */
     public function verifmodifier(EntityManagerInterface $em,UserInterface $user,Request $request)
     {
-
-
+        $repo = $em->getRepository(Sorties::class);
+        $Sorties = $repo->find($request->request->get("id"));
+        $Sorties->setNom($request->request->get("nom"));
+        $Sorties->setDateDeDebut($request->request->get("dateSortie"));
+        $Sorties->setDateCloture($request->request->get("dateFinSortie"));
+        $Sorties->setDuree($request->request->get("duree"));
+        $Sorties->setNbInscriptionMax($request->request->get("nombrePlace"));
+        $Sorties->setDescriptionInfos($request->request->get("description"));
+        $repo = $em->getRepository(Lieux::class);
+        $lieu = $repo->find($request->request->get("lieu"));
+        $Sorties->setLieu($request->request->get($lieu));
+        $em->persist($Sorties);
+        $em->flush();
 
 
             dump($request->request->all());
@@ -134,7 +145,7 @@ class SortieController extends AbstractController
 
 
 
-        return $this->render("sortie/modifier.html.twig");
+        return $this->render("sortie/list.html.twig");
     }
 
     /**

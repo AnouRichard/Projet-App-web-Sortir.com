@@ -66,11 +66,11 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-4"><h4><label>Date et heure de la sortie</label></h4></div>
-                            <div class="col-8"><input type="datetime" name="dateSortie" class="form-control form-control-lg"  value="{{ sorties.dateDeDebut|datetime}}"></div>
+                            <div class="col-8"><input type="datetime" name="dateSortie" class="form-control form-control-lg"  value="{{ sorties.dateDeDebut|format_datetime()}}"></div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-4"><h4><label>Date limite d'inscription</label></h4></div>
-                            <div class="col-8"><input type="datetime" name="dateFinSortie" class="form-control form-control-lg"  value="{{ sorties.dateCloture|datetime}}"></div>
+                            <div class="col-8"><input type="datetime" name="dateFinSortie" class="form-control form-control-lg"  value="{{ sorties.dateCloture|format_datetime()}}"></div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-4"><h4><label>Nombre de places</label></h4></div>

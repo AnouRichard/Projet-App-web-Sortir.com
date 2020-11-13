@@ -135,9 +135,9 @@ class SortieController extends AbstractController
         $inscriptions=$repo->findBy(array('sortie' => $Sorties));
         dump($inscriptions);
         foreach ($inscriptions as $inscription) {
-           dump($inscription);
+            $em->remove($inscription);
         }
-        $em->remove($inscriptions);
+
         $em->remove($Sorties);
         $em->flush();
 
